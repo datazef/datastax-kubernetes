@@ -1,0 +1,24 @@
+**********************************
+Create a Kubernetes cluster in GCP
+**********************************
+
+Pre-requisites
+##############
+Before you start, make sure you have performed the following tasks:
+
+* :doc:`./connect`
+
+Procedure
+#########
+* From the Google console, create a cluster using the command:
+
+.. code-block:: shell
+
+   $> gcloud beta container clusters create cluster-dse --zone us-west1 --release-channel stable
+
+.. note::
+   For zone names and other, refer to: https://cloud.google.com/compute/docs/regions-zones#available
+
+
+Post-requisites
+###############

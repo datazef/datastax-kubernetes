@@ -1,0 +1,36 @@
+***********************
+Create a project in GCP
+***********************
+
+Pre-requisites
+##############
+Before you start, make sure you have performed the following tasks:
+
+* :doc:`./login`
+
+Procedure
+#########
+* From the Google console, create a project using the command:
+
+.. code-block:: shell
+
+   $> gcloud projects create datastax-1 --name="dsegke"
+
+
+* To enable a specific API from the console for the project, just enable it:
+
+.. code-block:: shell
+
+   $> gcloud services enable container.googleapis.com
+
+.. note::
+   In order to get all services available, use the command: gcloud services list --available
+
+
+Post-requisites
+###############
+* Check if the project was created successfully:
+
+.. code-block:: shell
+
+   $> gcloud projects list
