@@ -48,3 +48,5 @@ Post-requisites
    NAME                             READY   STATUS    RESTARTS   AGE
    cass-operator-65cf9cf944-vg9bb   1/1     Running   0          3m16s
 
+   
+

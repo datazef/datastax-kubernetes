@@ -14,7 +14,7 @@ Procedure
 
 .. code-block:: shell
 
-   $> gcloud projects create datastax
+   $> gcloud projects create datastax-1 --name="dsegke"
 
 
 * To enable a specific API from the console for the project, just enable it:

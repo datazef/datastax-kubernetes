@@ -9,4 +9,5 @@ DataStax
    create-datacenter
    delete-all
    delete-cass-operator
+   cqlsh
 

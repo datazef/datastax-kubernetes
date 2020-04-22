@@ -40,3 +40,6 @@ Post-requisites
    UN  10.48.7.5   70.19 KiB  1            43.7%             36ccd8cf-b449-4dab-9f40-512bbb68bb72  default
    UN  10.48.3.7   103.54 KiB  1            68.0%             614748cd-d799-4f8c-b0ac-55bcf6cfa049  default
    UN  10.48.12.7  84.42 KiB  1            88.2%             b992c9c4-68fd-41c7-be42-ef7fae32a5aa  default
+
+   $> kubectl -n cass-operator get cassdc/dc1 -o "jsonpath={.status.cassandraOperatorProgress}"
+   Ready

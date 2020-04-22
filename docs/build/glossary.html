@@ -84,9 +84,17 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Procedures</span></p>
+<p class="caption"><span class="caption-text">Cloud</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cloud/index.html">Distributions</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Kubernetes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="kubernetes/index.html">Kubernetes</a></li>
+</ul>
+<p class="caption"><span class="caption-text">DataStax</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dse/index.html">DataStax</a></li>
 </ul>
 
             
@@ -156,6 +164,12 @@
 <dl class="glossary docutils">
 <dt id="term-sphinx">Sphinx</dt>
 <dd>Sphinx is a tool that makes it easy to create intelligent and beautiful documentation. It was originally created for the Python documentation, and it has excellent facilities for the documentation of software projects in a range of languages.</dd>
+<dt id="term-cassandra-operator">Cassandra Operator</dt>
+<dd>DataStax Kubernetes Operator for Apache Cassandra® (Cassandra Operator) automates the process of deploying and managing open-source Apache Cassandra® or DataStax Enterprise (DSE) in a Kubernetes cluster.</dd>
+<dt id="term-namespace">Namespace</dt>
+<dd>Namespaces are intended for use in environments with many users spread across multiple teams, or projects. For clusters with a few to tens of users, you should not need to create or think about namespaces at all. Start using namespaces when you need the features they provide. Ref: <a class="reference external" href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></dd>
+<dt id="term-service-account">Service Account</dt>
+<dd>When you (a human) access the cluster (for example, using kubectl), you are authenticated by the apiserver as a particular User Account (currently this is usually admin, unless your cluster administrator has customized your cluster). Processes in containers inside pods can also contact the apiserver. When they do, they are authenticated as a particular Service Account (for example, default).</dd>
 </dl>
 </div>
 
