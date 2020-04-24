@@ -1,0 +1,44 @@
+Launch Prometheus Instance
+==========================
+
+.. note::
+   Refer to DataStax main page https://github.com/datastax/dse-metric-reporter-dashboards for more information
+
+Pre-requisites
+--------------
+Before you start, make sure you have performed the following tasks:
+
+* :doc:`./service`
+
+Procedure
+---------
+* Edit the file k8s-build/prometheus/instance.yaml to match the configuration, i.e:
+
+.. code-block:: shell
+
+   spec:
+     replicas: 1
+     serviceAccountName: prometheus
+     securityContext: {}
+     serviceMonitorSelector:
+       matchLabels:
+         cassandra.datastax.com/cluster: cluster1
+
+ * Create prometheus instance:        
+
+.. code-block:: shell
+
+   $> kubectl apply -f k8s-build/generated/prometheus/instance.yaml
+   serviceaccount/prometheus created
+   clusterrole.rbac.authorization.k8s.io/prometheus created
+   clusterrolebinding.rbac.authorization.k8s.io/prometheus created
+   prometheus.monitoring.coreos.com/default created
+
+
+Post-requisites
+---------------
+* Check access with a port forward on your computer:   
+
+.. code-block:: shell
+
+   kubectl port-forward $(kubectl get pod --selector="name=grafana-operator" --output jsonpath='{.items[0].metadata.name}') 8080:8080
