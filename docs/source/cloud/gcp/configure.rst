@@ -1,16 +1,15 @@
-****************
 Configure gcloud
-****************
+================
 
 Pre-requisites
-##############
+--------------
 Before you start, make sure you have performed the following tasks:
 
 * :doc:`./login`
 * Have a project created using the web console or :doc:`./create-project` if you configure a project
 
 Procedure
-#########
+---------
 * From the Google console, retrieve the project ID and launch the command:
 
 .. code-block:: shell
@@ -25,7 +24,7 @@ Procedure
 
 
 Post-requisites
-###############
+---------------
 * Check if the project was created successfully:
 
 .. code-block:: shell

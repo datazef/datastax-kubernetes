@@ -1,19 +1,17 @@
-Distributions
-=============
+Cloud
+#####
 
 .. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    gcp/index
 
-
 .. toctree::
-   :maxdepth: 2
-
-   aws/index
-
-
-.. toctree::
-   :maxdepth: 2
+   :titlesonly:
 
    azure/index
+
+.. toctree::
+   :titlesonly:
+
+   aws/index

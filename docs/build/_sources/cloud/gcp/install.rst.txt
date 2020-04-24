@@ -1,18 +1,17 @@
-************************
 Install google cloud SDK
-************************
+========================
 
 .. note::
    Refer to Google main page for further information: https://cloud.google.com/sdk/docs/quickstart-macos.
 
 Pre-requisites
-##############
+--------------
 Before you start, make sure you have performed the following tasks:
 
 * Download gcloud sdk artifact for your platform.
 
 Procedure
-#########
+---------
 * Untar the archive:
 
 .. code-block:: shell
@@ -22,7 +21,7 @@ Procedure
 * Ideally update the .bash_profile to add the google cloud sdk binaries to your path
 
 Post-requisites
-###############
+---------------
 * Verify the installation:
 
 .. code-block:: shell

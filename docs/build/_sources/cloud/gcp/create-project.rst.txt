@@ -1,15 +1,14 @@
-***********************
 Create a project in GCP
-***********************
+=======================
 
 Pre-requisites
-##############
+--------------
 Before you start, make sure you have performed the following tasks:
 
 * :doc:`./login`
 
 Procedure
-#########
+---------
 * From the Google console, create a project using the command:
 
 .. code-block:: shell
@@ -28,7 +27,7 @@ Procedure
 
 
 Post-requisites
-###############
+---------------
 * Check if the project was created successfully:
 
 .. code-block:: shell

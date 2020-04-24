@@ -1,13 +1,14 @@
-DataStax
-========
+DSE
+###
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
-   install-cass-operator
-   install-custom-storage
-   create-datacenter
-   delete-all
-   delete-cass-operator
-   cqlsh
+   install/index
+
+.. toctree::
+   :titlesonly:
+
+   use/index
+
 

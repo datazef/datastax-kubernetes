@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Connect to a k8s cluster in GCP" href="connect-cluster.html" />
+    <link rel="next" title="Connect kubectl to a specific k8 cluster" href="connect-cluster.html" />
     <link rel="prev" title="Delete a project in GCP" href="delete-project.html" /> 
 </head>
 
@@ -80,13 +80,8 @@
               
             
             
-              <p class="caption"><span class="caption-text">Overview</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Cloud</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Distributions</a><ul class="current">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">GCP</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="install.html">Install google cloud SDK</a></li>
 <li class="toctree-l3"><a class="reference internal" href="login.html">Login to google cloud using the CLI</a></li>
@@ -99,21 +94,25 @@
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="connect-cluster.html">Connect to a k8s cluster in GCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connect-cluster.html">Connect kubectl to a specific k8 cluster</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/index.html">Azure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Kubernetes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../kubernetes/index.html">Kubernetes</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DataStax</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../dse/index.html">DataStax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dse/index.html">DSE</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../monitoring/index.html">Monitoring</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 </ul>
 
             
@@ -159,7 +158,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">Distributions</a> &raquo;</li>
+          <li><a href="../index.html">Cloud</a> &raquo;</li>
         
           <li><a href="index.html">GCP</a> &raquo;</li>
         
@@ -215,7 +214,7 @@ cluster-dse  us-west1  <span class="m">1</span>.14.10-gke.27  <span class="m">34
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Check if the project was created successfully:</li>
+<li>Check if the cluster was created successfully:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud container clusters list
 NAME         LOCATION  MASTER_VERSION  MASTER_IP     MACHINE_TYPE   NODE_VERSION    NUM_NODES  STATUS
@@ -233,7 +232,7 @@ cluster-dse  us-west1  <span class="m">1</span>.14.10-gke.27  <span class="m">34
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="connect-cluster.html" class="btn btn-neutral float-right" title="Connect to a k8s cluster in GCP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="connect-cluster.html" class="btn btn-neutral float-right" title="Connect kubectl to a specific k8 cluster" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="delete-project.html" class="btn btn-neutral float-left" title="Delete a project in GCP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -35,8 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Distributions" href="cloud/index.html" />
-    <link rel="prev" title="DataStax On Kubernetes" href="index.html" /> 
+    <link rel="prev" title="Launch Grafana instance" href="monitoring/grafana/instance.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -80,21 +79,20 @@
               
             
             
-              <p class="caption"><span class="caption-text">Overview</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="cloud/index.html">Cloud</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Cloud</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cloud/index.html">Distributions</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Kubernetes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="kubernetes/index.html">Kubernetes</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DataStax</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dse/index.html">DataStax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dse/index.html">DSE</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="monitoring/index.html">Monitoring</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a></li>
 </ul>
 
             
@@ -170,6 +168,8 @@
 <dd>Namespaces are intended for use in environments with many users spread across multiple teams, or projects. For clusters with a few to tens of users, you should not need to create or think about namespaces at all. Start using namespaces when you need the features they provide. Ref: <a class="reference external" href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/</a></dd>
 <dt id="term-service-account">Service Account</dt>
 <dd>When you (a human) access the cluster (for example, using kubectl), you are authenticated by the apiserver as a particular User Account (currently this is usually admin, unless your cluster administrator has customized your cluster). Processes in containers inside pods can also contact the apiserver. When they do, they are authenticated as a particular Service Account (for example, default).</dd>
+<dt id="term-servicemonitor">ServiceMonitor</dt>
+<dd>Describes the set of targets to be monitored by Prometheus</dd>
 </dl>
 </div>
 
@@ -181,10 +181,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cloud/index.html" class="btn btn-neutral float-right" title="Distributions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral float-left" title="DataStax On Kubernetes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="monitoring/grafana/instance.html" class="btn btn-neutral float-left" title="Launch Grafana instance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

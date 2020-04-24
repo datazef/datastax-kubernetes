@@ -1,15 +1,14 @@
-***********************************
 Login to google cloud using the CLI
-***********************************
+===================================
 
 Pre-requisites
-##############
+--------------
 Before you start, make sure you have performed the following tasks:
 
 * :doc:`./install`
 
 Procedure
-#########
+---------
 * Login using the gcloud command:
 
 .. code-block:: shell
@@ -23,4 +22,4 @@ Procedure
    $> gcloud config set account 'email@gmail.com'
 
 Post-requisites
-###############
+---------------

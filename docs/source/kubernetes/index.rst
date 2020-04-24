@@ -1,5 +1,5 @@
 Kubernetes
-==========
+##########
 
 .. toctree::
    :maxdepth: 1

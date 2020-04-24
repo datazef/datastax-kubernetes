@@ -1,5 +1,5 @@
 AWS
-*****
+===
 
 .. toctree::
    :maxdepth: 1

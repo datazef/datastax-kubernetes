@@ -1,8 +1,8 @@
 GCP
-***
+===
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
    install
    login

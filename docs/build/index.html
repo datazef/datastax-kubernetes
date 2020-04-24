@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Glossary" href="glossary.html" /> 
+    <link rel="next" title="Cloud" href="cloud/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -79,21 +79,20 @@
               
             
             
-              <p class="caption"><span class="caption-text">Overview</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="cloud/index.html">Cloud</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Cloud</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cloud/index.html">Distributions</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Kubernetes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="kubernetes/index.html">Kubernetes</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DataStax</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dse/index.html">DataStax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dse/index.html">DSE</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="monitoring/index.html">Monitoring</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 </ul>
 
             
@@ -161,39 +160,16 @@
   <div class="section" id="datastax-on-kubernetes">
 <h1>DataStax On Kubernetes<a class="headerlink" href="#datastax-on-kubernetes" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Overview</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Cloud</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cloud/index.html">Distributions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cloud/gcp/index.html">GCP</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cloud/gcp/install.html">Install google cloud SDK</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cloud/gcp/login.html">Login to google cloud using the CLI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cloud/gcp/configure.html">Configure gcloud</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cloud/gcp/create-project.html">Create a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cloud/gcp/delete-project.html">Delete a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cloud/gcp/create-cluster.html">Create a Kubernetes cluster in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cloud/gcp/connect-cluster.html">Connect to a k8s cluster in GCP</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cloud/aws/index.html">AWS</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cloud/aws/getting-started.html">Login to AWS console</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="cloud/azure/index.html">Azure</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="cloud/azure/getting-started.html">Login to Azure console</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="cloud/index.html">Cloud</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cloud/gcp/index.html">GCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud/azure/index.html">Azure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cloud/aws/index.html">AWS</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Kubernetes</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="kubernetes/index.html">Kubernetes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="kubernetes/cheatsheet.html">Cheatsheet</a><ul>
@@ -207,47 +183,51 @@
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">DataStax</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dse/index.html">DataStax</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dse/install-cass-operator.html">Install cass-operator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dse/install-cass-operator.html#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/install-cass-operator.html#procedure">Procedure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/install-cass-operator.html#post-requisites">Post-requisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dse/index.html">DSE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dse/install/index.html">Provisioning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dse/install/install-cass-operator.html">Install cass-operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dse/install/install-custom-storage.html">Install custom storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dse/install/configure-certs.html">Configure SSL certificates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dse/install/create-datacenter.html">Create a Cassandra cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dse/install/delete-all.html">Delete all DCs!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dse/install/delete-cass-operator.html">Delete cass-operator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="dse/install-custom-storage.html">Install custom storage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dse/install-custom-storage.html#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/install-custom-storage.html#procedure">Procedure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/install-custom-storage.html#post-requisites">Post-requisites</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dse/create-datacenter.html">Create datacenter</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dse/create-datacenter.html#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/create-datacenter.html#procedure">Procedure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/create-datacenter.html#post-requisites">Post-requisites</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dse/delete-all.html">Delete all DCs!</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dse/delete-all.html#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/delete-all.html#procedure">Procedure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/delete-all.html#post-requisites">Post-requisites</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dse/delete-cass-operator.html">Delete cass-operator</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dse/delete-cass-operator.html#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/delete-cass-operator.html#procedure">Procedure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/delete-cass-operator.html#post-requisites">Post-requisites</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dse/cqlsh.html">Cqlsh into a k8s dse cluster</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dse/cqlsh.html#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/cqlsh.html#procedure">Procedure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dse/cqlsh.html#post-requisites">Post-requisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dse/use/index.html">Use DSE as persistent layer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dse/use/cqlsh.html">Cqlsh into a k8s dse cluster</a></li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="monitoring/index.html">Monitoring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monitoring/operatorhub/index.html">OperatorHub Lifecycle Manager (OLM)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monitoring/operatorhub/operator.html">Install OperatorHub Lifecycle Manager</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring/prometheus/index.html">Prometheus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monitoring/prometheus/operator.html">Install Prometheus Operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitoring/prometheus/service.html">Install Prometheus Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitoring/prometheus/instance.html">Launch Prometheus Instance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="monitoring/grafana/index.html">Grafana</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monitoring/grafana/operator.html">Install Grafana operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitoring/grafana/dashboard.html">Configure Grafana data source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monitoring/grafana/instance.html">Launch Grafana instance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -260,7 +240,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="cloud/index.html" class="btn btn-neutral float-right" title="Cloud" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>

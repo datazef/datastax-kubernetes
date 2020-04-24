@@ -1,15 +1,14 @@
-**********************************
 Create a Kubernetes cluster in GCP
-**********************************
+==================================
 
 Pre-requisites
-##############
+--------------
 Before you start, make sure you have performed the following tasks:
 
 * :doc:`./configure` if you do not want to repeat all parameters
 
 Procedure
-#########
+---------
 * From the Google console, create a cluster using the command:
 
 .. code-block:: shell
@@ -28,12 +27,13 @@ Procedure
 
 
 Post-requisites
-###############
-* Check if the project was created successfully:
+---------------
+* Check if the cluster was created successfully:
 
 .. code-block:: shell
 
    $> gcloud container clusters list
    NAME         LOCATION  MASTER_VERSION  MASTER_IP     MACHINE_TYPE   NODE_VERSION    NUM_NODES  STATUS
    cluster-dse  us-west1  1.14.10-gke.27  34.82.61.164  n1-standard-1  1.14.10-gke.27  6          RUNNING
+
 

@@ -1,5 +1,5 @@
 Azure
-*****
+=====
 
 .. toctree::
    :maxdepth: 1
