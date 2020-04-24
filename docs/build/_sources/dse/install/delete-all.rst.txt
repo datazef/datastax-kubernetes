@@ -1,5 +1,5 @@
-Delete all DCs! 
-===============
+Delete all
+==========
 
 .. warning::
    This will delete all data...

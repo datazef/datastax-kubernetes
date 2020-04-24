@@ -37,8 +37,4 @@ Procedure
 
 Post-requisites
 ---------------
-* Check access with a port forward on your computer:   
 
-.. code-block:: shell
-
-   kubectl port-forward $(kubectl get pod --selector="name=grafana-operator" --output jsonpath='{.items[0].metadata.name}') 8080:8080

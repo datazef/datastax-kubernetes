@@ -2,12 +2,12 @@ DSE
 ###
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 2
 
    install/index
 
 .. toctree::
-   :titlesonly:
+   :maxdepth: 2
 
    use/index
 
