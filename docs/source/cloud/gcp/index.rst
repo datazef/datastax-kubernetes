@@ -6,8 +6,9 @@ GCP
 
    install
    login
-   configure
    create-project
-   delete-project
+   configure
    create-cluster
    connect-cluster
+   delete-project
+

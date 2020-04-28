@@ -1,5 +1,5 @@
-Delete a project in GCP
-=======================
+Delete a project
+================
 
 Pre-requisites
 --------------
@@ -13,7 +13,7 @@ Procedure
 
 .. code-block:: shell
 
-   $> gcloud projects delete datastax
+   $> gcloud projects delete datastax-1
 
 
 Post-requisites
@@ -22,4 +22,4 @@ Post-requisites
 
 .. code-block:: shell
 
-   $> gcloud projects list
+   $> gcloud projects list | grep datastax-1

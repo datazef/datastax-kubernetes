@@ -1,5 +1,5 @@
-Use DSE as persistent layer 
-===========================
+Connect 
+=======
 
 .. toctree::
    :maxdepth: 1
