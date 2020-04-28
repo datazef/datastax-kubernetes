@@ -3,6 +3,7 @@ apiVersion: integreatly.org/v1alpha1
 kind: Grafana
 metadata:
   name: default
+  namespace: cass-operator
 spec:
   ingress:
     enabled: true

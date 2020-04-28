@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Launch Grafana instance &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Launch instance &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Glossary" href="../../glossary.html" />
-    <link rel="prev" title="Configure Grafana data source" href="dashboard.html" /> 
+    <link rel="prev" title="Configure data source &amp; dashboards" href="dashboard.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,9 +94,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../operatorhub/index.html">OperatorHub Lifecycle Manager (OLM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../prometheus/index.html">Prometheus</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Grafana</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="operator.html">Install Grafana operator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dashboard.html">Configure Grafana data source</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Launch Grafana instance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operator.html">Install operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dashboard.html">Configure data source &amp; dashboards</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Launch instance</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
@@ -158,7 +158,7 @@
         
           <li><a href="index.html">Grafana</a> &raquo;</li>
         
-      <li>Launch Grafana instance</li>
+      <li>Launch instance</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -177,8 +177,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="launch-grafana-instance">
-<h1>Launch Grafana instance<a class="headerlink" href="#launch-grafana-instance" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="launch-instance">
+<h1>Launch instance<a class="headerlink" href="#launch-instance" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Refer to DataStax main page <a class="reference external" href="https://github.com/datastax/dse-metric-reporter-dashboards">https://github.com/datastax/dse-metric-reporter-dashboards</a> for more information</p>
@@ -187,8 +187,8 @@
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li><a class="reference internal" href="operator.html"><span class="doc">Install Grafana operator</span></a></li>
-<li><a class="reference internal" href="dashboard.html"><span class="doc">Configure Grafana data source</span></a></li>
+<li><a class="reference internal" href="operator.html"><span class="doc">Install operator</span></a></li>
+<li><a class="reference internal" href="dashboard.html"><span class="doc">Configure data source &amp; dashboards</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -206,9 +206,39 @@ grafana.integreatly.org/default created
 <ul class="simple">
 <li>Check access with a port forward on your computer:</li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>kubectl port-forward <span class="k">$(</span>kubectl get pod --selector<span class="o">=</span><span class="s2">&quot;name=grafana-operator&quot;</span> --output <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].metadata.name}&#39;</span><span class="k">)</span> <span class="m">8080</span>:8080
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get svc --namespace<span class="o">=</span>cass-operator
+NAME                                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>             AGE
+cass-operator-metrics                 ClusterIP   <span class="m">10</span>.51.240.254   &lt;none&gt;        <span class="m">8383</span>/TCP,8686/TCP   53m
+cassandradatacenter-webhook-service   ClusterIP   <span class="m">10</span>.51.247.142   &lt;none&gt;        <span class="m">443</span>/TCP             53m
+cluster1-dc1-all-pods-service         ClusterIP   None            &lt;none&gt;        &lt;none&gt;              49m
+cluster1-dc1-service                  ClusterIP   None            &lt;none&gt;        <span class="m">9042</span>/TCP,8080/TCP   49m
+cluster1-seed-service                 ClusterIP   None            &lt;none&gt;        &lt;none&gt;              49m
+<span class="hll">grafana-operator-metrics              ClusterIP   <span class="m">10</span>.51.244.178   &lt;none&gt;        <span class="m">8080</span>/TCP            10m
+</span><span class="hll">grafana-service                       ClusterIP   <span class="m">10</span>.51.249.247   &lt;none&gt;        <span class="m">3000</span>/TCP            5s
+</span>prometheus-operated                   ClusterIP   None            &lt;none&gt;        <span class="m">9090</span>/TCP            18m
 </pre></div>
 </div>
+<ul>
+<li><p class="first">To access grafana UI:</p>
+<blockquote>
+<div><p>$&gt; kubectl port-forward -n cass-operator svc/grafana-service 3000:3000</p>
+</div></blockquote>
+</li>
+<li><p class="first">To check if prometheus datasource is configured go to page: <a class="reference external" href="http://localhost:3000/datasources">http://localhost:3000/datasources</a></p>
+</li>
+<li><p class="first">If you do not see the dasboards, you can import them manually:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dse-analytics.json">https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dse-analytics.json</a></li>
+<li><a class="reference external" href="https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/system-metrics.json">https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/system-metrics.json</a></li>
+<li><a class="reference external" href="https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/prometheus-metrics.json">https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/prometheus-metrics.json</a></li>
+<li><a class="reference external" href="https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dse-cluster-metrics.json">https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dse-cluster-metrics.json</a></li>
+<li><a class="reference external" href="https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dse-cluster-condensed.json">https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dse-cluster-condensed.json</a></li>
+<li><a class="reference external" href="https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dse-search-cluster.json">https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dse-search-cluster.json</a></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
 </div>
 </div>
 
@@ -223,7 +253,7 @@ grafana.integreatly.org/default created
         <a href="../../glossary.html" class="btn btn-neutral float-right" title="Glossary" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dashboard.html" class="btn btn-neutral float-left" title="Configure Grafana data source" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dashboard.html" class="btn btn-neutral float-left" title="Configure data source &amp; dashboards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

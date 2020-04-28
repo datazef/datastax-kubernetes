@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Install Prometheus Operator &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Install Operator &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Install Prometheus Service" href="service.html" />
+    <link rel="next" title="Install Service" href="service.html" />
     <link rel="prev" title="Prometheus" href="index.html" /> 
 </head>
 
@@ -93,14 +93,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Monitoring</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../operatorhub/index.html">OperatorHub Lifecycle Manager (OLM)</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Prometheus</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Install Prometheus Operator</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Install Operator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="service.html">Install Prometheus Service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="instance.html">Launch Prometheus Instance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="service.html">Install Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instance.html">Launch Instance</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../grafana/index.html">Grafana</a></li>
@@ -158,7 +158,7 @@
         
           <li><a href="index.html">Prometheus</a> &raquo;</li>
         
-      <li>Install Prometheus Operator</li>
+      <li>Install Operator</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -177,8 +177,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="install-prometheus-operator">
-<h1>Install Prometheus Operator<a class="headerlink" href="#install-prometheus-operator" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="install-operator">
+<h1>Install Operator<a class="headerlink" href="#install-operator" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Refer to DataStax main page <a class="reference external" href="https://github.com/datastax/dse-metric-reporter-dashboards">https://github.com/datastax/dse-metric-reporter-dashboards</a> for more information</p>
@@ -188,7 +188,7 @@
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
 <li><a class="reference internal" href="../../dse/install/create-datacenter.html"><span class="doc">Create a Cassandra cluster</span></a></li>
-<li><a class="reference internal" href="../operatorhub/operator.html"><span class="doc">Install OperatorHub Lifecycle Manager</span></a></li>
+<li><a class="reference internal" href="../operatorhub/operator.html"><span class="doc">Install Operator</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -202,28 +202,21 @@ operatorgroup.operators.coreos.com/operator-group created
 subscription.operators.coreos.com/prometheus created
 </pre></div>
 </div>
+<p>The Operator ensures at all times that for each Prometheus resource in the cluster a set of Prometheus servers with the desired configuration are running. This entails aspects like the data retention time, persistent volume claims, number of replicas, the Prometheus version, and Alertmanager instances to send alerts to. Each Prometheus instance is paired with a respective configuration that specifies which monitoring targets to scrape for metrics and with which parameters.</p>
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Check if all resources are created:</li>
+<li>Check if operator was created:</li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get pods --namespace<span class="o">=</span>olm
-NAME                                READY   STATUS    RESTARTS   AGE
-catalog-operator-66cf4f96f4-6vvfc   <span class="m">1</span>/1     Running   <span class="m">0</span>          10m
-olm-operator-9b64f8547-r4zfv        <span class="m">1</span>/1     Running   <span class="m">0</span>          10m
-operatorhubio-catalog-bfdsr         <span class="m">1</span>/1     Running   <span class="m">0</span>          10m
-packageserver-597999d959-5zftz      <span class="m">1</span>/1     Running   <span class="m">0</span>          10m
-packageserver-597999d959-pqghc      <span class="m">1</span>/1     Running   <span class="m">0</span>          10m
-
-kubectl get pods --namespace<span class="o">=</span>cass-operator
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get pods --namespace<span class="o">=</span>cass-operator
 NAME                                   READY   STATUS    RESTARTS   AGE
 cass-operator-8646fbbc5d-nb8pd         <span class="m">1</span>/1     Running   <span class="m">0</span>          23m
 cluster1-dc1-default-sts-0             <span class="m">2</span>/2     Running   <span class="m">0</span>          18m
 cluster1-dc1-default-sts-1             <span class="m">2</span>/2     Running   <span class="m">0</span>          18m
 cluster1-dc1-default-sts-2             <span class="m">2</span>/2     Running   <span class="m">0</span>          18m
-prometheus-operator-7df548ccd6-ldh96   <span class="m">1</span>/1     Running   <span class="m">0</span>          10m
-</pre></div>
+<span class="hll">prometheus-operator-7df548ccd6-ldh96   <span class="m">1</span>/1     Running   <span class="m">0</span>          10m
+</span></pre></div>
 </div>
 </div>
 </div>
@@ -236,7 +229,7 @@ prometheus-operator-7df548ccd6-ldh96   <span class="m">1</span>/1     Running   
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="service.html" class="btn btn-neutral float-right" title="Install Prometheus Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="service.html" class="btn btn-neutral float-right" title="Install Service" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Prometheus" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

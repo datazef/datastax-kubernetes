@@ -1,5 +1,5 @@
-Install OperatorHub Lifecycle Manager 
-=====================================
+Install Operator 
+================
 
 .. note::
    Refer to DataStax main page https://github.com/datastax/dse-metric-reporter-dashboards for more information
@@ -41,7 +41,7 @@ Procedure
    deployment "packageserver" successfully rolled out
 
 .. note::
-   If the script does not work, a modified version with the option --validate=false removed is available in the repo https://github.com/datazef/datastax-kubernetes/. You can run it with the command k8s-build/templates/grafana/install.sh 0.14.1
+   If the script does not work, a modified version with the option --validate=false removed is available in the repo https://github.com/datazef/datastax-kubernetes/. You can run it with the command k8s-build/templates/olm/install.sh 0.14.1
 
 Post-requisites
 ---------------

@@ -1,5 +1,5 @@
-Install Prometheus Service
-==========================
+Install Service
+===============
 
 .. note::
    Refer to DataStax main page https://github.com/datastax/dse-metric-reporter-dashboards for more information
@@ -33,10 +33,12 @@ Procedure
 * Install the Prometheus service:
 
 .. code-block:: shell
-
+   :emphasize-lines: 2
+   
    $> kubectl apply -f k8s-build/generated/prometheus/service_monitor.yaml
    servicemonitor.monitoring.coreos.com/dse-cluster created
 
+The user can either manually specify this configuration or let the Operator generate it based on the second TPR, the ServiceMonitor. The ServiceMonitor resource specifies how metrics can be retrieved from a set of services exposing them in a common way. A Prometheus resource object can dynamically include ServiceMonitor objects by their labels. The Operator configures the Prometheus instance to monitor all services covered by included ServiceMonitors and keeps this configuration synchronized with any changes happening in the cluster.
 
 Post-requisites
 ---------------

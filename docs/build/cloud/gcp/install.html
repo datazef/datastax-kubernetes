@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Install google cloud SDK &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Install SDK &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Login to google cloud using the CLI" href="login.html" />
+    <link rel="next" title="Login" href="login.html" />
     <link rel="prev" title="GCP" href="index.html" /> 
 </head>
 
@@ -83,18 +83,18 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">GCP</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Install google cloud SDK</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Install SDK</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="login.html">Login to google cloud using the CLI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configure.html">Configure gcloud</a></li>
-<li class="toctree-l3"><a class="reference internal" href="create-project.html">Create a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="connect-cluster.html">Connect kubectl to a specific k8 cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="login.html">Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-project.html">Create a project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html">Configure project for kubernetes deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connect-cluster.html">Connect kubectl to a k8s cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/index.html">Azure</a></li>
@@ -162,7 +162,7 @@
         
           <li><a href="index.html">GCP</a> &raquo;</li>
         
-      <li>Install google cloud SDK</li>
+      <li>Install SDK</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,8 +181,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="install-google-cloud-sdk">
-<h1>Install google cloud SDK<a class="headerlink" href="#install-google-cloud-sdk" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="install-sdk">
+<h1>Install SDK<a class="headerlink" href="#install-sdk" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Refer to Google main page for further information: <a class="reference external" href="https://cloud.google.com/sdk/docs/quickstart-macos">https://cloud.google.com/sdk/docs/quickstart-macos</a>.</p>
@@ -212,11 +212,32 @@
 <li>Verify the installation:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud -v
-Google Cloud SDK <span class="m">289</span>.0.0
-bq <span class="m">2</span>.0.56
+<span class="hll">Google Cloud SDK <span class="m">289</span>.0.0
+</span>bq <span class="m">2</span>.0.56
 core <span class="m">2020</span>.04.10
 gsutil <span class="m">4</span>.49
 </pre></div>
+</div>
+<ul class="simple">
+<li>To upgrade components:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud components update
+Do you want to <span class="k">continue</span> <span class="o">(</span>Y/n<span class="o">)</span>?  Y
+
+╔════════════════════════════════════════════════════════════╗
+╠═ Creating update staging area                             ═╣
+╠════════════════════════════════════════════════════════════╣
+╠═ Uninstalling: Cloud SDK Core Libraries                   ═╣
+╠════════════════════════════════════════════════════════════╣
+╠═ Installing: Cloud SDK Core Libraries                     ═╣
+╠════════════════════════════════════════════════════════════╣
+╠═ Creating backup and activating new installation          ═╣
+╚════════════════════════════════════════════════════════════╝
+
+Performing post processing steps...done.
+
+<span class="hll">Update <span class="k">done</span>!
+</span></pre></div>
 </div>
 </div>
 </div>
@@ -229,7 +250,7 @@ gsutil <span class="m">4</span>.49
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="login.html" class="btn btn-neutral float-right" title="Login to google cloud using the CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="login.html" class="btn btn-neutral float-right" title="Login" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="GCP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

@@ -1,5 +1,5 @@
-Create a project in GCP
-=======================
+Create a project
+================
 
 Pre-requisites
 --------------
@@ -15,21 +15,15 @@ Procedure
 
    $> gcloud projects create datastax-1 --name="dsegke"
 
-
-* To enable a specific API from the console for the project, just enable it:
-
-.. code-block:: shell
-
-   $> gcloud services enable container.googleapis.com
-
-.. note::
-   In order to get all services available, use the command: gcloud services list --available
-
-
 Post-requisites
 ---------------
 * Check if the project was created successfully:
 
 .. code-block:: shell
-
+   :emphasize-lines: 3
+   
    $> gcloud projects list
+   PROJECT_ID             NAME               PROJECT_NUMBER
+   datastax-1      dsegke  324324530958
+
+

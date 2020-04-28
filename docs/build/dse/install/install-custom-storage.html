@@ -102,7 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="delete-cass-operator.html">Delete cass-operator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Use DSE as persistent layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Connect</a></li>
 </ul>
 </li>
 </ul>
@@ -189,7 +189,7 @@
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li>GKE: <a class="reference internal" href="../../cloud/gcp/create-cluster.html"><span class="doc">Create a Kubernetes cluster in GCP</span></a> and <a class="reference internal" href="../../cloud/gcp/connect-cluster.html"><span class="doc">Connect kubectl to a specific k8 cluster</span></a></li>
+<li><a class="reference internal" href="install-cass-operator.html"><span class="doc">Install cass-operator</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -198,12 +198,21 @@
 <li>Deploy the optimized storage class:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl create -f k8s-build/templates/cassandra/storage.yaml
-storageclass.storage.k8s.io/server-storage created
-</pre></div>
+<span class="hll">storageclass.storage.k8s.io/server-storage created
+</span></pre></div>
 </div>
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Check if all resources are created:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator get sc
+NAME                 PROVISIONER            AGE
+<span class="hll">server-storage       kubernetes.io/gce-pd   101s
+</span>standard <span class="o">(</span>default<span class="o">)</span>   kubernetes.io/gce-pd   81m
+</pre></div>
+</div>
 </div>
 </div>
 

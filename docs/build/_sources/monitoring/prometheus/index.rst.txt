@@ -2,7 +2,7 @@ Prometheus
 ==========
 
 .. toctree::
-   :maxdepth: 0
+   :maxdepth: 1
 
    operator
    service

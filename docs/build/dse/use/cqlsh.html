@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Cqlsh into a k8s dse cluster &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>cqlsh into a k8s cassandra cluster &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Monitoring" href="../../monitoring/index.html" />
-    <link rel="prev" title="Use DSE as persistent layer" href="index.html" /> 
+    <link rel="prev" title="Connect" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -89,8 +89,8 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">DSE</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../install/index.html">Provisioning</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Use DSE as persistent layer</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Cqlsh into a k8s dse cluster</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Connect</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">cqlsh into a k8s cassandra cluster</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
@@ -153,9 +153,9 @@
         
           <li><a href="../index.html">DSE</a> &raquo;</li>
         
-          <li><a href="index.html">Use DSE as persistent layer</a> &raquo;</li>
+          <li><a href="index.html">Connect</a> &raquo;</li>
         
-      <li>Cqlsh into a k8s dse cluster</li>
+      <li>cqlsh into a k8s cassandra cluster</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -174,8 +174,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="cqlsh-into-a-k8s-dse-cluster">
-<h1>Cqlsh into a k8s dse cluster<a class="headerlink" href="#cqlsh-into-a-k8s-dse-cluster" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="cqlsh-into-a-k8s-cassandra-cluster">
+<h1>cqlsh into a k8s cassandra cluster<a class="headerlink" href="#cqlsh-into-a-k8s-cassandra-cluster" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This is in addition to all notes available on DataStax <a class="reference external" href="https://docs.datastax.com/en/cass-operator/doc/cass-operator/cassOperatorTOC.html">https://docs.datastax.com/en/cass-operator/doc/cass-operator/cassOperatorTOC.html</a> and to the information available <a class="reference external" href="https://github.com/datastax/cass-operator">https://github.com/datastax/cass-operator</a></p>
@@ -184,25 +184,27 @@
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li>GKE: <a class="reference internal" href="../../cloud/gcp/create-cluster.html"><span class="doc">Create a Kubernetes cluster in GCP</span></a> and <a class="reference internal" href="../../cloud/gcp/connect-cluster.html"><span class="doc">Connect kubectl to a specific k8 cluster</span></a></li>
+<li>GKE: <a class="reference internal" href="../../cloud/gcp/create-cluster.html"><span class="doc">Create a Kubernetes cluster</span></a> and <a class="reference internal" href="../../cloud/gcp/connect-cluster.html"><span class="doc">Connect kubectl to a k8s cluster</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Retrieve the secrets used to connect:</li>
+<li>Retrieve the user to retrieve secrets for:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get secrets -n cass-operator <span class="p">|</span> grep cluster1
-cluster1-superuser          Opaque                                <span class="m">2</span>      36m
-
-or <span class="k">if</span> you know the cluster name, just suffix with -superuser
-
-$&gt; kubectl get secret cluster1-superuser -n cass-operator -o yaml
+<span class="hll">cluster1-superuser          Opaque                                <span class="m">2</span>      36m
+</span></pre></div>
+</div>
+<ul class="simple">
+<li>Retrieve the secrets to retrieve login/password information:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get secret cluster1-superuser -n cass-operator -o yaml
 apiVersion: v1
 data:
-  password: MjZKUDVLZjUwY0ZFV2NnWHBRWEtQeHFUU24wazFoSWlrSDVOYTlTN3JsU3VueUYyRWpCcVlB
-  username: Y2x1c3RlcjEtc3VwZXJ1c2Vy
-kind: Secret
+<span class="hll">  password: MjZKUDVLZjUwY0ZFV2NnWHBRWEtQeHFUU24wazFoSWlrSDVOYTlTN3JsU3VueUYyRWpCcVlB
+</span><span class="hll">  username: Y2x1c3RlcjEtc3VwZXJ1c2Vy
+</span>kind: Secret
 metadata:
   creationTimestamp: <span class="s2">&quot;2020-04-21T23:07:59Z&quot;</span>
   name: cluster1-superuser
@@ -214,28 +216,28 @@ type: Opaque
 </pre></div>
 </div>
 <ul class="simple">
-<li>Get the login:</li>
+<li>Decode the login:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; <span class="nb">echo</span> <span class="s1">&#39;Y2x1c3RlcjEtc3VwZXJ1c2Vy&#39;</span> <span class="p">|</span> base64 --decode
-cluster1-superuser
-</pre></div>
+<span class="hll">cluster1-superuser
+</span></pre></div>
 </div>
 <ul class="simple">
-<li>Get the password:</li>
+<li>Decode the password:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; <span class="nb">echo</span> <span class="s1">&#39;MjZKUDVLZjUwY0ZFV2NnWHBRWEtQeHFUU24wazFoSWlrSDVOYTlTN3JsU3VueUYyRWpCcVlB&#39;</span> <span class="p">|</span> base64 --decode
-26JP5Kf50cFEWcgXpQXKPxqTSn0k1hIikH5Na9S7rlSunyF2EjBqYA
-</pre></div>
+<span class="hll">26JP5Kf50cFEWcgXpQXKPxqTSn0k1hIikH5Na9S7rlSunyF2EjBqYA
+</span></pre></div>
 </div>
 <ul class="simple">
-<li>Cqlsh:</li>
+<li>cqlsh into one of the nodes:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator <span class="nb">exec</span> -it -c cassandra cluster1-dc1-default-sts-0 -- cqlsh -u cluster1-superuser -p <span class="s1">&#39;26JP5Kf50cFEWcgXpQXKPxqTSn0k1hIikH5Na9S7rlSunyF2EjBqYA&#39;</span>
 Connected to cluster1 at <span class="m">127</span>.0.0.1:9042.
 <span class="o">[</span>cqlsh <span class="m">5</span>.0.1 <span class="p">|</span> Cassandra <span class="m">3</span>.11.6 <span class="p">|</span> CQL spec <span class="m">3</span>.4.4 <span class="p">|</span> Native protocol v4<span class="o">]</span>
 Use HELP <span class="k">for</span> help.
-cluster1-superuser@cqlsh&gt;
-</pre></div>
+<span class="hll">cluster1-superuser@cqlsh&gt;
+</span></pre></div>
 </div>
 </div>
 <div class="section" id="post-requisites">
@@ -254,7 +256,7 @@ cluster1-superuser@cqlsh&gt;
         <a href="../../monitoring/index.html" class="btn btn-neutral float-right" title="Monitoring" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Use DSE as persistent layer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Connect" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

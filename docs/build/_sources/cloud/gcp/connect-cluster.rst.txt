@@ -1,5 +1,5 @@
-Connect kubectl to a specific k8 cluster
-========================================
+Connect kubectl to a k8s cluster
+================================
 
 Pre-requisites
 --------------
@@ -12,6 +12,7 @@ Procedure
 * From the Google console, create a cluster using the command:
 
 .. code-block:: shell
+   :emphasize-lines: 2, 3
 
    $> gcloud container clusters get-credentials cluster-dse --project fieldops-delivery --zone us-west1
    Fetching cluster endpoint and auth data.
@@ -26,6 +27,7 @@ Post-requisites
 * Check if connection is successful:
 
 .. code-block:: shell
+   :emphasize-lines: 3, 4, 5, 6, 7, 8
 
    $> kubectl get nodes
    NAME                                         STATUS   ROLES    AGE   VERSION

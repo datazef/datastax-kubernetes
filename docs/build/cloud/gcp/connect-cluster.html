@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Connect kubectl to a specific k8 cluster &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Connect kubectl to a k8s cluster &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Azure" href="../azure/index.html" />
-    <link rel="prev" title="Create a Kubernetes cluster in GCP" href="create-cluster.html" /> 
+    <link rel="next" title="Delete a project" href="delete-project.html" />
+    <link rel="prev" title="Create a Kubernetes cluster" href="create-cluster.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,18 +83,18 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">GCP</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="install.html">Install google cloud SDK</a></li>
-<li class="toctree-l3"><a class="reference internal" href="login.html">Login to google cloud using the CLI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configure.html">Configure gcloud</a></li>
-<li class="toctree-l3"><a class="reference internal" href="create-project.html">Create a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster in GCP</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Connect kubectl to a specific k8 cluster</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html">Install SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="login.html">Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-project.html">Create a project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html">Configure project for kubernetes deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Connect kubectl to a k8s cluster</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/index.html">Azure</a></li>
@@ -162,7 +162,7 @@
         
           <li><a href="index.html">GCP</a> &raquo;</li>
         
-      <li>Connect kubectl to a specific k8 cluster</li>
+      <li>Connect kubectl to a k8s cluster</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,13 +181,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="connect-kubectl-to-a-specific-k8-cluster">
-<h1>Connect kubectl to a specific k8 cluster<a class="headerlink" href="#connect-kubectl-to-a-specific-k8-cluster" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="connect-kubectl-to-a-k8s-cluster">
+<h1>Connect kubectl to a k8s cluster<a class="headerlink" href="#connect-kubectl-to-a-k8s-cluster" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="pre-requisites">
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li><a class="reference internal" href="create-cluster.html"><span class="doc">Create a Kubernetes cluster in GCP</span></a></li>
+<li><a class="reference internal" href="create-cluster.html"><span class="doc">Create a Kubernetes cluster</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -196,9 +196,9 @@
 <li>From the Google console, create a cluster using the command:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud container clusters get-credentials cluster-dse --project fieldops-delivery --zone us-west1
-Fetching cluster endpoint and auth data.
-kubeconfig entry generated <span class="k">for</span> cluster-dse.
-</pre></div>
+<span class="hll">Fetching cluster endpoint and auth data.
+</span><span class="hll">kubeconfig entry generated <span class="k">for</span> cluster-dse.
+</span></pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -212,13 +212,13 @@ kubeconfig entry generated <span class="k">for</span> cluster-dse.
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get nodes
 NAME                                         STATUS   ROLES    AGE   VERSION
-gke-cluster-dse-default-pool-070d8a9f-l5j3   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
-gke-cluster-dse-default-pool-070d8a9f-mg9p   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
-gke-cluster-dse-default-pool-1798d660-fqtc   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
-gke-cluster-dse-default-pool-1798d660-wz0r   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
-gke-cluster-dse-default-pool-d339feaf-124r   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
-gke-cluster-dse-default-pool-d339feaf-m54n   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
-</pre></div>
+<span class="hll">gke-cluster-dse-default-pool-070d8a9f-l5j3   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
+</span><span class="hll">gke-cluster-dse-default-pool-070d8a9f-mg9p   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
+</span><span class="hll">gke-cluster-dse-default-pool-1798d660-fqtc   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
+</span><span class="hll">gke-cluster-dse-default-pool-1798d660-wz0r   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
+</span><span class="hll">gke-cluster-dse-default-pool-d339feaf-124r   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
+</span><span class="hll">gke-cluster-dse-default-pool-d339feaf-m54n   Ready    &lt;none&gt;   27m   v1.14.10-gke.27
+</span></pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -235,10 +235,10 @@ gke-cluster-dse-default-pool-d339feaf-m54n   Ready    &lt;none&gt;   27m   v1.14
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../azure/index.html" class="btn btn-neutral float-right" title="Azure" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="delete-project.html" class="btn btn-neutral float-right" title="Delete a project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="create-cluster.html" class="btn btn-neutral float-left" title="Create a Kubernetes cluster in GCP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="create-cluster.html" class="btn btn-neutral float-left" title="Create a Kubernetes cluster" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

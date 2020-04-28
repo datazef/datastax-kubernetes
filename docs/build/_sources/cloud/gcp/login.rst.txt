@@ -1,5 +1,5 @@
-Login to google cloud using the CLI
-===================================
+Login
+=====
 
 Pre-requisites
 --------------
@@ -23,3 +23,17 @@ Procedure
 
 Post-requisites
 ---------------
+* Verify if authentication was successful:
+
+.. code-block:: shell
+
+   $> gcloud auth print-identity-token
+
+* Verify the account used:
+
+.. code-block:: shell
+   :emphasize-lines: 2
+
+   $> gcloud config get-value account
+   email@gmail.com
+

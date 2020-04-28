@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Install Prometheus Service &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Install Service &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Launch Prometheus Instance" href="instance.html" />
-    <link rel="prev" title="Install Prometheus Operator" href="operator.html" /> 
+    <link rel="next" title="Launch Instance" href="instance.html" />
+    <link rel="prev" title="Install Operator" href="operator.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -93,14 +93,14 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Monitoring</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../operatorhub/index.html">OperatorHub Lifecycle Manager (OLM)</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Prometheus</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="operator.html">Install Prometheus Operator</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Install Prometheus Service</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operator.html">Install Operator</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Install Service</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="instance.html">Launch Prometheus Instance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instance.html">Launch Instance</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../grafana/index.html">Grafana</a></li>
@@ -158,7 +158,7 @@
         
           <li><a href="index.html">Prometheus</a> &raquo;</li>
         
-      <li>Install Prometheus Service</li>
+      <li>Install Service</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -177,8 +177,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="install-prometheus-service">
-<h1>Install Prometheus Service<a class="headerlink" href="#install-prometheus-service" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="install-service">
+<h1>Install Service<a class="headerlink" href="#install-service" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Refer to DataStax main page <a class="reference external" href="https://github.com/datastax/dse-metric-reporter-dashboards">https://github.com/datastax/dse-metric-reporter-dashboards</a> for more information</p>
@@ -187,7 +187,7 @@
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li><a class="reference internal" href="operator.html"><span class="doc">Install Prometheus Operator</span></a></li>
+<li><a class="reference internal" href="operator.html"><span class="doc">Install Operator</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -213,9 +213,10 @@ selector:
 <li>Install the Prometheus service:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl apply -f k8s-build/generated/prometheus/service_monitor.yaml
-servicemonitor.monitoring.coreos.com/dse-cluster created
-</pre></div>
+<span class="hll">servicemonitor.monitoring.coreos.com/dse-cluster created
+</span></pre></div>
 </div>
+<p>The user can either manually specify this configuration or let the Operator generate it based on the second TPR, the ServiceMonitor. The ServiceMonitor resource specifies how metrics can be retrieved from a set of services exposing them in a common way. A Prometheus resource object can dynamically include ServiceMonitor objects by their labels. The Operator configures the Prometheus instance to monitor all services covered by included ServiceMonitors and keeps this configuration synchronized with any changes happening in the cluster.</p>
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
@@ -230,10 +231,10 @@ servicemonitor.monitoring.coreos.com/dse-cluster created
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="instance.html" class="btn btn-neutral float-right" title="Launch Prometheus Instance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="instance.html" class="btn btn-neutral float-right" title="Launch Instance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="operator.html" class="btn btn-neutral float-left" title="Install Prometheus Operator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="operator.html" class="btn btn-neutral float-left" title="Install Operator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

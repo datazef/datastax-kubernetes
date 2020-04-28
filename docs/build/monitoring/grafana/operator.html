@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Install Grafana operator &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Install operator &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Configure Grafana data source" href="dashboard.html" />
+    <link rel="next" title="Configure data source &amp; dashboards" href="dashboard.html" />
     <link rel="prev" title="Grafana" href="index.html" /> 
 </head>
 
@@ -94,14 +94,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../operatorhub/index.html">OperatorHub Lifecycle Manager (OLM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../prometheus/index.html">Prometheus</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Grafana</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Install Grafana operator</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Install operator</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="dashboard.html">Configure Grafana data source</a></li>
-<li class="toctree-l3"><a class="reference internal" href="instance.html">Launch Grafana instance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dashboard.html">Configure data source &amp; dashboards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instance.html">Launch instance</a></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +158,7 @@
         
           <li><a href="index.html">Grafana</a> &raquo;</li>
         
-      <li>Install Grafana operator</li>
+      <li>Install operator</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -177,8 +177,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="install-grafana-operator">
-<h1>Install Grafana operator<a class="headerlink" href="#install-grafana-operator" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="install-operator">
+<h1>Install operator<a class="headerlink" href="#install-operator" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Refer to DataStax main page <a class="reference external" href="https://github.com/datastax/dse-metric-reporter-dashboards">https://github.com/datastax/dse-metric-reporter-dashboards</a> for more information</p>
@@ -188,7 +188,7 @@
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
 <li><a class="reference internal" href="../../dse/install/create-datacenter.html"><span class="doc">Create a Cassandra cluster</span></a></li>
-<li><a class="reference internal" href="../operatorhub/operator.html"><span class="doc">Install OperatorHub Lifecycle Manager</span></a></li>
+<li><a class="reference internal" href="../operatorhub/operator.html"><span class="doc">Install Operator</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -197,14 +197,28 @@
 <li>Install the Grafana Operator:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl create -f k8s-build/generated/grafana/operator.yaml
-namespace/grafana-operator created
-operatorgroup.operators.coreos.com/operatorgroup created
-subscription.operators.coreos.com/grafana-operator created
-</pre></div>
+<span class="hll">namespace/grafana-operator created
+</span><span class="hll">operatorgroup.operators.coreos.com/operatorgroup created
+</span><span class="hll">subscription.operators.coreos.com/grafana-operator created
+</span></pre></div>
 </div>
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Check if operator was created:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get pods --namespace<span class="o">=</span>cass-operator
+NAME                                   READY   STATUS    RESTARTS   AGE
+cass-operator-8646fbbc5d-wcb44         <span class="m">1</span>/1     Running   <span class="m">0</span>          42m
+cluster1-dc1-rack1-sts-0               <span class="m">2</span>/2     Running   <span class="m">0</span>          38m
+cluster1-dc1-rack2-sts-0               <span class="m">2</span>/2     Running   <span class="m">0</span>          38m
+cluster1-dc1-rack3-sts-0               <span class="m">2</span>/2     Running   <span class="m">0</span>          38m
+grafana-operator-57f8c4f67-s8s54       <span class="m">1</span>/1     Running   <span class="m">0</span>          21s
+<span class="hll">prometheus-operator-7df548ccd6-dv7mg   <span class="m">1</span>/1     Running   <span class="m">0</span>          14m
+</span>prometheus-prometheus-k8s-0            <span class="m">3</span>/3     Running   <span class="m">1</span>          7m35s
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -216,7 +230,7 @@ subscription.operators.coreos.com/grafana-operator created
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="dashboard.html" class="btn btn-neutral float-right" title="Configure Grafana data source" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="dashboard.html" class="btn btn-neutral float-right" title="Configure data source &amp; dashboards" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Grafana" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

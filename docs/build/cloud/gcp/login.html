@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Login to google cloud using the CLI &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Login &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Configure gcloud" href="configure.html" />
-    <link rel="prev" title="Install google cloud SDK" href="install.html" /> 
+    <link rel="next" title="Create a project" href="create-project.html" />
+    <link rel="prev" title="Install SDK" href="install.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,18 +83,18 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">GCP</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="install.html">Install google cloud SDK</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Login to google cloud using the CLI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html">Install SDK</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Login</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="configure.html">Configure gcloud</a></li>
-<li class="toctree-l3"><a class="reference internal" href="create-project.html">Create a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="connect-cluster.html">Connect kubectl to a specific k8 cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-project.html">Create a project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html">Configure project for kubernetes deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connect-cluster.html">Connect kubectl to a k8s cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/index.html">Azure</a></li>
@@ -162,7 +162,7 @@
         
           <li><a href="index.html">GCP</a> &raquo;</li>
         
-      <li>Login to google cloud using the CLI</li>
+      <li>Login</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,13 +181,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="login-to-google-cloud-using-the-cli">
-<h1>Login to google cloud using the CLI<a class="headerlink" href="#login-to-google-cloud-using-the-cli" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="login">
+<h1>Login<a class="headerlink" href="#login" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="pre-requisites">
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li><a class="reference internal" href="install.html"><span class="doc">Install google cloud SDK</span></a></li>
+<li><a class="reference internal" href="install.html"><span class="doc">Install SDK</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -207,6 +207,19 @@
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Verify if authentication was successful:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud auth print-identity-token
+</pre></div>
+</div>
+<ul class="simple">
+<li>Verify the account used:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud config get-value account
+<span class="hll">email@gmail.com
+</span></pre></div>
+</div>
 </div>
 </div>
 
@@ -218,10 +231,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="configure.html" class="btn btn-neutral float-right" title="Configure gcloud" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="create-project.html" class="btn btn-neutral float-right" title="Create a project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="install.html" class="btn btn-neutral float-left" title="Install google cloud SDK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral float-left" title="Install SDK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

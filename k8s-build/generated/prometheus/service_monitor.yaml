@@ -4,6 +4,7 @@ metadata:
   labels:
     cassandra.datastax.com/cluster: cluster1
   name: dse-cluster
+  namespace: cass-operator
 spec:
   endpoints:
   - interval: 15s

@@ -4,6 +4,7 @@ metadata:
   labels:
     app: grafana
   name: system-metrics
+  namespace: cass-operator
 spec:
   json: "{\n  \"annotations\": {\n    \"list\": [\n      {\n        \"builtIn\": 1,\n\
     \        \"datasource\": \"-- Grafana --\",\n        \"enable\": true,\n     \

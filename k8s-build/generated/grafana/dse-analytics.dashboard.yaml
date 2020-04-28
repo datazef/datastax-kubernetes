@@ -4,6 +4,7 @@ metadata:
   labels:
     app: grafana
   name: dse-analytics
+  namespace: cass-operator
 spec:
   json: |
     {

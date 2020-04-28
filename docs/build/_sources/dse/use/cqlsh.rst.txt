@@ -1,5 +1,5 @@
-Cqlsh into a k8s dse cluster 
-============================
+cqlsh into a k8s cassandra cluster 
+==================================
 
 .. note::
    This is in addition to all notes available on DataStax https://docs.datastax.com/en/cass-operator/doc/cass-operator/cassOperatorTOC.html and to the information available https://github.com/datastax/cass-operator
@@ -12,14 +12,18 @@ Before you start, make sure you have performed the following tasks:
 
 Procedure
 ---------
-* Retrieve the secrets used to connect:
+* Retrieve the user to retrieve secrets for:
 
 .. code-block:: shell
+   :emphasize-lines: 2
 
    $> kubectl get secrets -n cass-operator | grep cluster1
    cluster1-superuser          Opaque                                2      36m
 
-   or if you know the cluster name, just suffix with -superuser
+* Retrieve the secrets to retrieve login/password information:
+
+.. code-block:: shell
+   :emphasize-lines: 4, 5
 
    $> kubectl get secret cluster1-superuser -n cass-operator -o yaml
    apiVersion: v1
@@ -36,23 +40,26 @@ Procedure
      uid: f1b731aa-8424-11ea-b971-42010a8a00a2
    type: Opaque
 
-* Get the login: 
+* Decode the login: 
 
 .. code-block:: shell
+   :emphasize-lines: 2
 
    $> echo 'Y2x1c3RlcjEtc3VwZXJ1c2Vy' | base64 --decode
    cluster1-superuser
 
-* Get the password: 
+* Decode the password: 
 
 .. code-block:: shell
+   :emphasize-lines: 2
 
    $> echo 'MjZKUDVLZjUwY0ZFV2NnWHBRWEtQeHFUU24wazFoSWlrSDVOYTlTN3JsU3VueUYyRWpCcVlB' | base64 --decode
    26JP5Kf50cFEWcgXpQXKPxqTSn0k1hIikH5Na9S7rlSunyF2EjBqYA
 
-* Cqlsh: 
+* cqlsh into one of the nodes: 
 
 .. code-block:: shell
+   :emphasize-lines: 5
 
    $> kubectl -n cass-operator exec -it -c cassandra cluster1-dc1-default-sts-0 -- cqlsh -u cluster1-superuser -p '26JP5Kf50cFEWcgXpQXKPxqTSn0k1hIikH5Na9S7rlSunyF2EjBqYA'
    Connected to cluster1 at 127.0.0.1:9042.

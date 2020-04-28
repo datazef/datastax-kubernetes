@@ -3,6 +3,7 @@ apiVersion: integreatly.org/v1alpha1
 kind: GrafanaDataSource
 metadata:
   name: prometheus-grafanadatasource
+  namespace: cass-operator
 spec:
   datasources:
     - access: proxy

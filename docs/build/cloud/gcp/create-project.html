@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Create a project in GCP &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Create a project &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Delete a project in GCP" href="delete-project.html" />
-    <link rel="prev" title="Configure gcloud" href="configure.html" /> 
+    <link rel="next" title="Configure project for kubernetes deployment" href="configure.html" />
+    <link rel="prev" title="Login" href="login.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -83,18 +83,18 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">GCP</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="install.html">Install google cloud SDK</a></li>
-<li class="toctree-l3"><a class="reference internal" href="login.html">Login to google cloud using the CLI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configure.html">Configure gcloud</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Create a project in GCP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="install.html">Install SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="login.html">Login</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Create a project</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster in GCP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="connect-cluster.html">Connect kubectl to a specific k8 cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configure.html">Configure project for kubernetes deployment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connect-cluster.html">Connect kubectl to a k8s cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../azure/index.html">Azure</a></li>
@@ -162,7 +162,7 @@
         
           <li><a href="index.html">GCP</a> &raquo;</li>
         
-      <li>Create a project in GCP</li>
+      <li>Create a project</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,13 +181,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="create-a-project-in-gcp">
-<h1>Create a project in GCP<a class="headerlink" href="#create-a-project-in-gcp" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="create-a-project">
+<h1>Create a project<a class="headerlink" href="#create-a-project" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="pre-requisites">
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li><a class="reference internal" href="login.html"><span class="doc">Login to google cloud using the CLI</span></a></li>
+<li><a class="reference internal" href="login.html"><span class="doc">Login</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -198,16 +198,6 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud projects create datastax-1 --name<span class="o">=</span><span class="s2">&quot;dsegke&quot;</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li>To enable a specific API from the console for the project, just enable it:</li>
-</ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud services <span class="nb">enable</span> container.googleapis.com
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">In order to get all services available, use the command: gcloud services list –available</p>
-</div>
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
@@ -215,7 +205,9 @@
 <li>Check if the project was created successfully:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gcloud projects list
-</pre></div>
+PROJECT_ID             NAME               PROJECT_NUMBER
+<span class="hll">datastax-1      dsegke  <span class="m">324324530958</span>
+</span></pre></div>
 </div>
 </div>
 </div>
@@ -228,10 +220,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="delete-project.html" class="btn btn-neutral float-right" title="Delete a project in GCP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="configure.html" class="btn btn-neutral float-right" title="Configure project for kubernetes deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="configure.html" class="btn btn-neutral float-left" title="Configure gcloud" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="login.html" class="btn btn-neutral float-left" title="Login" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -4,6 +4,7 @@ metadata:
   labels:
     app: grafana
   name: empty
+  namespace: cass-operator
 spec:
   url: https://raw.githubusercontent.com/datastax/dse-metric-reporter-dashboards/master/grafana/dashboards/dashboard.json
   json: "{}"

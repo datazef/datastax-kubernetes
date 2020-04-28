@@ -102,7 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="delete-cass-operator.html">Delete cass-operator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Use DSE as persistent layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Connect</a></li>
 </ul>
 </li>
 </ul>
@@ -189,7 +189,9 @@
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li>GKE: <a class="reference internal" href="../../cloud/gcp/create-cluster.html"><span class="doc">Create a Kubernetes cluster in GCP</span></a> and <a class="reference internal" href="../../cloud/gcp/connect-cluster.html"><span class="doc">Connect kubectl to a specific k8 cluster</span></a></li>
+<li>GKE: <a class="reference internal" href="../../cloud/gcp/create-cluster.html"><span class="doc">Create a Kubernetes cluster</span></a> and <a class="reference internal" href="../../cloud/gcp/connect-cluster.html"><span class="doc">Connect kubectl to a k8s cluster</span></a></li>
+<li><a class="reference internal" href="install-cass-operator.html"><span class="doc">Install cass-operator</span></a></li>
+<li><a class="reference internal" href="install-custom-storage.html"><span class="doc">Install custom storage</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -197,38 +199,69 @@
 <ul class="simple">
 <li>Create a datacenter with 3 nodes (one per rack):</li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator create -f k8s-build/templates/cassandra/example-cassdc-minimal.yaml
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator create -f k8s-build/templates/cassandra/example-dse-full.yaml
 cassandradatacenter.cassandra.datastax.com/dc1 created
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Some features are still being developed for the cassandra version. Please install DSE to see all features in action.</p>
 </div>
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Check if all resources are created:</li>
+<li>Check if all pods are created (topology: dc1[3 nodes]):</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get pods -n cass-operator --selector cassandra.datastax.com/cluster<span class="o">=</span>cluster1
-cluster1-dc1-default-sts-0   <span class="m">2</span>/2     Running   <span class="m">0</span>          2m2s
-cluster1-dc1-default-sts-1   <span class="m">1</span>/2     Running   <span class="m">0</span>          2m2s
-cluster1-dc1-default-sts-2   <span class="m">1</span>/2     Running   <span class="m">0</span>          2m2s
-
-$&gt; kubectl -n cass-operator <span class="nb">exec</span> -it -c cassandra cluster1-dc1-default-sts-0 -- nodetool status
+<span class="hll">cluster1-dc1-default-sts-0   <span class="m">2</span>/2     Running   <span class="m">0</span>          2m2s
+</span><span class="hll">cluster1-dc1-default-sts-1   <span class="m">1</span>/2     Running   <span class="m">0</span>          2m2s
+</span><span class="hll">cluster1-dc1-default-sts-2   <span class="m">1</span>/2     Running   <span class="m">0</span>          2m2s
+</span></pre></div>
+</div>
+<ul class="simple">
+<li>Once all pods are up and running, you can check the status of the cassandra cluster:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator <span class="nb">exec</span> -it -c cassandra cluster1-dc1-default-sts-0 -- nodetool status
 Datacenter: <span class="nv">dc1</span>
 <span class="o">===============</span>
 <span class="nv">Status</span><span class="o">=</span>Up/Down
 <span class="p">|</span>/ <span class="nv">State</span><span class="o">=</span>Normal/Leaving/Joining/Moving
 --  Address     Load       Tokens       Owns <span class="o">(</span>effective<span class="o">)</span>  Host ID                               Rack
-UN  <span class="m">10</span>.48.7.5   <span class="m">70</span>.19 KiB  <span class="m">1</span>            <span class="m">43</span>.7%             36ccd8cf-b449-4dab-9f40-512bbb68bb72  default
-UN  <span class="m">10</span>.48.3.7   <span class="m">103</span>.54 KiB  <span class="m">1</span>            <span class="m">68</span>.0%             614748cd-d799-4f8c-b0ac-55bcf6cfa049  default
-UN  <span class="m">10</span>.48.12.7  <span class="m">84</span>.42 KiB  <span class="m">1</span>            <span class="m">88</span>.2%             b992c9c4-68fd-41c7-be42-ef7fae32a5aa  default
-
-$&gt; kubectl -n cass-operator get cassdc/dc1 -o <span class="s2">&quot;jsonpath={.status.cassandraOperatorProgress}&quot;</span>
-Ready
-</pre></div>
+<span class="hll">UN  <span class="m">10</span>.48.7.5   <span class="m">70</span>.19 KiB  <span class="m">1</span>            <span class="m">43</span>.7%             36ccd8cf-b449-4dab-9f40-512bbb68bb72  default
+</span><span class="hll">UN  <span class="m">10</span>.48.3.7   <span class="m">103</span>.54 KiB  <span class="m">1</span>            <span class="m">68</span>.0%             614748cd-d799-4f8c-b0ac-55bcf6cfa049  default
+</span><span class="hll">UN  <span class="m">10</span>.48.12.7  <span class="m">84</span>.42 KiB  <span class="m">1</span>            <span class="m">88</span>.2%             b992c9c4-68fd-41c7-be42-ef7fae32a5aa  default
+</span></pre></div>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">The nodetool command will run ony after the complete cluster is setup and running</p>
+<ul class="simple">
+<li>Or get the Operator progress report:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator get cassdc/dc1 -o <span class="s2">&quot;jsonpath={.status.cassandraOperatorProgress}&quot;</span>
+<span class="hll">Ready
+</span></pre></div>
+</div>
+<ul class="simple">
+<li>DC service endpoints:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl describe svc cluster1-dc1-service -n cass-operator
+Name:              cluster1-dc1-service
+Namespace:         cass-operator
+Labels:            app.kubernetes.io/managed-by<span class="o">=</span>cassandra-operator
+                   cassandra.datastax.com/cluster<span class="o">=</span>cluster1
+                   cassandra.datastax.com/datacenter<span class="o">=</span>dc1
+Annotations:       &lt;none&gt;
+Selector:          app.kubernetes.io/managed-by<span class="o">=</span>cassandra-operator,cassandra.datastax.com/cluster<span class="o">=</span>cluster1,cassandra.datastax.com/datacenter<span class="o">=</span>dc1
+Type:              ClusterIP
+IP:                None
+Port:              native  <span class="m">9042</span>/TCP
+TargetPort:        <span class="m">9042</span>/TCP
+<span class="hll">Endpoints:         <span class="m">10</span>.48.3.3:9042,10.48.4.3:9042,10.48.5.3:9042
+</span>Port:              mgmt-api  <span class="m">8080</span>/TCP
+TargetPort:        <span class="m">8080</span>/TCP
+Endpoints:         <span class="m">10</span>.48.3.3:8080,10.48.4.3:8080,10.48.5.3:8080
+Session Affinity:  None
+Events:            &lt;none&gt;
+</pre></div>
 </div>
 </div>
 </div>

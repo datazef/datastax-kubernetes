@@ -24,20 +24,18 @@ spec:
   # Each rack is pinned to a Google Cloud zone.
   racks:
     - name: rack1
-      zone: us-central1-a
+      zone: us-west1-a
     - name: rack2
-      zone: us-central1-b
+      zone: us-west1-b
     - name: rack3
-      zone: us-central1-c
+      zone: us-west1-c
 
   # Limit each pod to a fixed 6 CPU cores and 24 GB of RAM.
   resources:
     requests:
-      memory: 24Gi
-      cpu: 6000m
+      memory: 16Gi
     limits:
-      memory: 24Gi
-      cpu: 6000m
+      memory: 16Gi
 
   # The storage configuration. This sets up a 100GB volume at /var/lib/cassandra
   # on each server pod. The user is left to create the server-storage storage
@@ -53,7 +51,7 @@ spec:
         - ReadWriteOnce
       resources:
         requests:
-          storage: 100Gi
+          storage: 10Gi
 
   # Multiple server pods running on one k8s worker is disabled by default.
   # Enabling this is an advanced use case.
@@ -151,8 +149,8 @@ spec:
     jvm-server-options:
 
       # Set the database to use 14 GB of Java heap
-      initial_heap_size: "14G"
-      max_heap_size: "14G"
+      initial_heap_size: "8G"
+      max_heap_size: "8G"
 
       additional-jvm-opts:
       

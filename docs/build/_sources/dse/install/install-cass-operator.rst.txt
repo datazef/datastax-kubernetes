@@ -15,6 +15,7 @@ Procedure
 * Deploy the cass-operator:
 
 .. code-block:: shell
+   :emphasize-lines: 2, 3, 11
 
    $> kubectl create -f k8s-build/templates/cassandra/cass-operator-manifests.yaml  --validate=false
    namespace/cass-operator created
@@ -40,22 +41,46 @@ This command will create the following:
 
 Post-requisites
 ---------------
-* Check if all resources are created:
+* Verify if the service account is created:
 
 .. code-block:: shell
+   :emphasize-lines: 3
 
    $> kubectl get serviceaccounts --namespace=cass-operator
    NAME            SECRETS   AGE
    cass-operator   1         9m57s
    default         1         9m57s
 
+* Verify if cass-operator main pod is created:   
+
+.. code-block:: shell
+   :emphasize-lines: 3
+
    $> kubectl get pods --namespace=cass-operator
    NAME                             READY   STATUS    RESTARTS   AGE
    cass-operator-65cf9cf944-vg9bb   1/1     Running   0          3m16s
+
+* Verify if all services have been created:  
+
+.. code-block:: shell
+   :emphasize-lines: 3, 4
 
    $> kubectl get svc --namespace=cass-operator
    NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)             AGE
    cass-operator-metrics   ClusterIP   10.51.253.196   <none>        8383/TCP,8686/TCP   42s
    cassandradatacenter-webhook-service   ClusterIP   10.51.240.144   <none>        443/TCP             2m37s
    
+* To check the metrics pagelm execute the below command and open the browser on http://localhost:8383/metrics   
+
+.. code-block:: shell
+
+   $> kubectl port-forward -n cass-operator svc/cass-operator-metrics 8383:8383
+
+* To list all clusters managed by this operator:
+
+.. code-block:: shell
+
+   $> kubectl -n cass-operator get cassdcs -o wide   
+   No resources found.
+
 

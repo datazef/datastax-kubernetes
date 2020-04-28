@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configure Grafana data source &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Configure data source &amp; dashboards &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Launch Grafana instance" href="instance.html" />
-    <link rel="prev" title="Install Grafana operator" href="operator.html" /> 
+    <link rel="next" title="Launch instance" href="instance.html" />
+    <link rel="prev" title="Install operator" href="operator.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,14 +94,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../operatorhub/index.html">OperatorHub Lifecycle Manager (OLM)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../prometheus/index.html">Prometheus</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Grafana</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="operator.html">Install Grafana operator</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Configure Grafana data source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operator.html">Install operator</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configure data source &amp; dashboards</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="instance.html">Launch Grafana instance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instance.html">Launch instance</a></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +158,7 @@
         
           <li><a href="index.html">Grafana</a> &raquo;</li>
         
-      <li>Configure Grafana data source</li>
+      <li>Configure data source &amp; dashboards</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -177,8 +177,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configure-grafana-data-source">
-<h1>Configure Grafana data source<a class="headerlink" href="#configure-grafana-data-source" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="configure-data-source-dashboards">
+<h1>Configure data source &amp; dashboards<a class="headerlink" href="#configure-data-source-dashboards" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Refer to DataStax main page <a class="reference external" href="https://github.com/datastax/dse-metric-reporter-dashboards">https://github.com/datastax/dse-metric-reporter-dashboards</a> for more information</p>
@@ -187,7 +187,7 @@
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
 <ul class="simple">
-<li><a class="reference internal" href="operator.html"><span class="doc">Install Grafana operator</span></a></li>
+<li><a class="reference internal" href="operator.html"><span class="doc">Install operator</span></a></li>
 </ul>
 </div>
 <div class="section" id="procedure">
@@ -196,20 +196,20 @@
 <li>Configure and install the GrafanaDataSource:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl apply -f k8s-build/generated/grafana/datasource.yaml
-grafanadatasource.integreatly.org/prometheus-grafanadatasource created
-</pre></div>
+<span class="hll">grafanadatasource.integreatly.org/prometheus-grafanadatasource created
+</span></pre></div>
 </div>
 <ul class="simple">
 <li>Configure and install the GrafanaDashboard:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; find k8s-build/generated/grafana/ -name <span class="s2">&quot;*.dashboard.yaml&quot;</span> -exec kubectl apply -f <span class="o">{}</span> <span class="se">\;</span>
-grafanadashboard.integreatly.org/prometheus-metrics created
-grafanadashboard.integreatly.org/dse-search-cluster created
-grafanadashboard.integreatly.org/dse-analytics created
-grafanadashboard.integreatly.org/system-metrics created
-grafanadashboard.integreatly.org/dse-cluster-metrics created
-grafanadashboard.integreatly.org/dse-cluster-condensed created
-</pre></div>
+<span class="hll">grafanadashboard.integreatly.org/prometheus-metrics created
+</span><span class="hll">grafanadashboard.integreatly.org/dse-search-cluster created
+</span><span class="hll">grafanadashboard.integreatly.org/dse-analytics created
+</span><span class="hll">grafanadashboard.integreatly.org/system-metrics created
+</span><span class="hll">grafanadashboard.integreatly.org/dse-cluster-metrics created
+</span><span class="hll">grafanadashboard.integreatly.org/dse-cluster-condensed created
+</span></pre></div>
 </div>
 </div>
 <div class="section" id="post-requisites">
@@ -225,10 +225,10 @@ grafanadashboard.integreatly.org/dse-cluster-condensed created
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="instance.html" class="btn btn-neutral float-right" title="Launch Grafana instance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="instance.html" class="btn btn-neutral float-right" title="Launch instance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="operator.html" class="btn btn-neutral float-left" title="Install Grafana operator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="operator.html" class="btn btn-neutral float-left" title="Install operator" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
