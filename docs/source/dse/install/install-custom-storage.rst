@@ -12,7 +12,28 @@ Before you start, make sure you have performed the following tasks:
 
 Procedure
 ---------
-* Deploy the optimized storage class:
+* Storage class:
+
+.. code-block:: shell
+
+   apiVersion: storage.k8s.io/v1
+   kind: StorageClass
+   metadata:
+     name: server-storage
+   provisioner: kubernetes.io/gce-pd
+   parameters:
+     type: pd-ssd
+     replication-type: none
+   volumeBindingMode: WaitForFirstConsumer
+   reclaimPolicy: Delete
+
+.. note::
+   * reclaimPolicy: Delete => If you do not want to storage to be deleted at the same time as the pod, you can set the option reclaimPolicy to Retain to avoid the data to be deleted. 
+
+.. warning::
+   * volumeBindingMode: WaitForFirstConsumer => the default value is Immediate and should not be used. It can prevent Cassandra pods from being scheduled on a worker node. If a pod fails to run and its status reports a message like, had volume node affinity conflict, then check the volumeBindingMode of the StorageClass being used. See Topology-Aware Volume Provisioning in Kubernetes for more details.
+
+* Create the optimized storage class:
 
 .. code-block:: shell
    :emphasize-lines: 2

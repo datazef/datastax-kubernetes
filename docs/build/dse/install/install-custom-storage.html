@@ -102,7 +102,8 @@
 <li class="toctree-l3"><a class="reference internal" href="delete-cass-operator.html">Delete cass-operator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Connect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manage/index.html">Manage</a></li>
 </ul>
 </li>
 </ul>
@@ -195,7 +196,34 @@
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Deploy the optimized storage class:</li>
+<li>Storage class:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: server-storage
+provisioner: kubernetes.io/gce-pd
+parameters:
+  type: pd-ssd
+  replication-type: none
+volumeBindingMode: WaitForFirstConsumer
+reclaimPolicy: Delete
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>reclaimPolicy: Delete =&gt; If you do not want to storage to be deleted at the same time as the pod, you can set the option reclaimPolicy to Retain to avoid the data to be deleted.</li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<ul class="last simple">
+<li>volumeBindingMode: WaitForFirstConsumer =&gt; the default value is Immediate and should not be used. It can prevent Cassandra pods from being scheduled on a worker node. If a pod fails to run and its status reports a message like, had volume node affinity conflict, then check the volumeBindingMode of the StorageClass being used. See Topology-Aware Volume Provisioning in Kubernetes for more details.</li>
+</ul>
+</div>
+<ul class="simple">
+<li>Create the optimized storage class:</li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl create -f k8s-build/templates/cassandra/storage.yaml
 <span class="hll">storageclass.storage.k8s.io/server-storage created

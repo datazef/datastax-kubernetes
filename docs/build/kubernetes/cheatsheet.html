@@ -86,9 +86,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Kubernetes</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Cheatsheet</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#api-resources">API resources:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#list-resources">List resources:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#describe-pod">Describe pod:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-resources">API resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#list-resources">List resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#describe-pod">Describe pod</a></li>
 </ul>
 </li>
 </ul>
@@ -171,7 +171,7 @@
   <div class="section" id="cheatsheet">
 <h1>Cheatsheet<a class="headerlink" href="#cheatsheet" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="api-resources">
-<h2>API resources:<a class="headerlink" href="#api-resources" title="Permalink to this headline">¶</a></h2>
+<h2>API resources<a class="headerlink" href="#api-resources" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl api-resources
 NAME                              SHORTNAMES       APIGROUP                       NAMESPACED   KIND
 bindings                                                                          <span class="nb">true</span>         Binding
@@ -185,7 +185,7 @@ namespaces                        ns                                            
 </div>
 </div>
 <div class="section" id="list-resources">
-<h2>List resources:<a class="headerlink" href="#list-resources" title="Permalink to this headline">¶</a></h2>
+<h2>List resources<a class="headerlink" href="#list-resources" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get <span class="o">{</span>namespaces<span class="p">|</span>pods<span class="p">|</span>nodes<span class="p">|</span>serviceaccounts<span class="o">}</span> --namespace<span class="o">=</span>cass-operator
 NAME              STATUS   AGE
 cass-operator     Active   3m4s
@@ -203,7 +203,7 @@ default-token-jmjsf         kubernetes.io/service-account-token   <span class="m
 </div>
 </div>
 <div class="section" id="describe-pod">
-<h2>Describe pod:<a class="headerlink" href="#describe-pod" title="Permalink to this headline">¶</a></h2>
+<h2>Describe pod<a class="headerlink" href="#describe-pod" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl describe pod cass-operator-65cf9cf944-vg9bb -n cass-operator
 Name:           cass-operator-65cf9cf944-vg9bb
 Namespace:      cass-operator

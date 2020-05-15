@@ -42,4 +42,15 @@ Post-requisites
    NAME         LOCATION  MASTER_VERSION  MASTER_IP     MACHINE_TYPE   NODE_VERSION    NUM_NODES  STATUS
    cluster-dse  us-west1  1.14.10-gke.27  34.82.61.164  n1-standard-1  1.14.10-gke.27  6          RUNNING
 
+* To list all the nodes in the cluster:
+
+.. code-block:: shell
+
+   $> kubectl get nodes --label-columns failure-domain.beta.kubernetes.io/region,failure-domain.beta.kubernetes.io/zone | column -t
+   gke-cluster-dse-default-pool-5833fc98-lcct  Ready   <none>  15m  v1.14.10-gke.27  us-west1  us-west1-c   gke-cluster-dse-default-pool-5833fc98-vl15  Ready   <none>  15m  v1.14.10-gke.27  us-west1  us-west1-c
+   gke-cluster-dse-default-pool-6aae0f91-c6hv  Ready   <none>  15m  v1.14.10-gke.27  us-west1  us-west1-a
+   gke-cluster-dse-default-pool-6aae0f91-n4pw  Ready   <none>  15m  v1.14.10-gke.27  us-west1  us-west1-a
+   gke-cluster-dse-default-pool-8d04372a-psc3  Ready   <none>  15m  v1.14.10-gke.27  us-west1  us-west1-b
+   gke-cluster-dse-default-pool-8d04372a-sg5k  Ready   <none>  15m  v1.14.10-gke.27  us-west1  us-west1-b
+
 

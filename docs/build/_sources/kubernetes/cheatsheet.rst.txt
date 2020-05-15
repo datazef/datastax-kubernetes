@@ -1,8 +1,8 @@
 Cheatsheet 
 ==========
 
-API resources:
---------------
+API resources
+-------------
 
 .. code-block:: shell
    
@@ -16,8 +16,8 @@ API resources:
    limitranges                       limits                                          true         LimitRange
    namespaces                        ns                                              false        Namespace
 
-List resources:
----------------
+List resources
+--------------
 
 .. code-block:: shell
 
@@ -35,8 +35,8 @@ List resources:
    cluster1-superuser          Opaque                                2      35m
    default-token-jmjsf         kubernetes.io/service-account-token   3      56m
 
-Describe pod:
----------------
+Describe pod
+------------
 
 .. code-block:: shell
 

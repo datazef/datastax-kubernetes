@@ -11,4 +11,9 @@ DSE
 
    use/index
 
+.. toctree::
+   :maxdepth: 2
+
+   manage/index
+
 

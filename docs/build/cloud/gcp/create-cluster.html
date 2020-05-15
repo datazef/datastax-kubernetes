@@ -229,6 +229,17 @@ NAME         LOCATION  MASTER_VERSION  MASTER_IP     MACHINE_TYPE   NODE_VERSION
 <span class="hll">cluster-dse  us-west1  <span class="m">1</span>.14.10-gke.27  <span class="m">34</span>.82.61.164  n1-standard-1  <span class="m">1</span>.14.10-gke.27  <span class="m">6</span>          RUNNING
 </span></pre></div>
 </div>
+<ul class="simple">
+<li>To list all the nodes in the cluster:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get nodes --label-columns failure-domain.beta.kubernetes.io/region,failure-domain.beta.kubernetes.io/zone <span class="p">|</span> column -t
+gke-cluster-dse-default-pool-5833fc98-lcct  Ready   &lt;none&gt;  15m  v1.14.10-gke.27  us-west1  us-west1-c   gke-cluster-dse-default-pool-5833fc98-vl15  Ready   &lt;none&gt;  15m  v1.14.10-gke.27  us-west1  us-west1-c
+gke-cluster-dse-default-pool-6aae0f91-c6hv  Ready   &lt;none&gt;  15m  v1.14.10-gke.27  us-west1  us-west1-a
+gke-cluster-dse-default-pool-6aae0f91-n4pw  Ready   &lt;none&gt;  15m  v1.14.10-gke.27  us-west1  us-west1-a
+gke-cluster-dse-default-pool-8d04372a-psc3  Ready   &lt;none&gt;  15m  v1.14.10-gke.27  us-west1  us-west1-b
+gke-cluster-dse-default-pool-8d04372a-sg5k  Ready   &lt;none&gt;  15m  v1.14.10-gke.27  us-west1  us-west1-b
+</pre></div>
+</div>
 </div>
 </div>
 

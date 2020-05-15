@@ -170,6 +170,10 @@
 <dd>When you (a human) access the cluster (for example, using kubectl), you are authenticated by the apiserver as a particular User Account (currently this is usually admin, unless your cluster administrator has customized your cluster). Processes in containers inside pods can also contact the apiserver. When they do, they are authenticated as a particular Service Account (for example, default).</dd>
 <dt id="term-servicemonitor">ServiceMonitor</dt>
 <dd>Describes the set of targets to be monitored by Prometheus</dd>
+<dt id="term-spec">spec</dt>
+<dd>The spec declares the desired state of a resource which includes configuration settings provided by the user, default values expanded by the system, and other properties initialized by other internal components after resource creation.</dd>
+<dt id="term-management-api">Management API</dt>
+<dd>The Management API is a sidecar service layer that attempts to build a well supported set of operational actions on Cassandra® nodes that can be administered centrally. It currently works with official Apache Cassandra® 3.11.x an 4.0 via a drop in java agent. For more information refer to <a class="reference external" href="https://github.com/datastax/management-api-for-apache-cassandra">https://github.com/datastax/management-api-for-apache-cassandra</a>.</dd>
 </dl>
 </div>
 

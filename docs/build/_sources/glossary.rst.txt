@@ -18,4 +18,10 @@ Glossary
   ServiceMonitor 
     Describes the set of targets to be monitored by Prometheus
 
+  spec
+    The spec declares the desired state of a resource which includes configuration settings provided by the user, default values expanded by the system, and other properties initialized by other internal components after resource creation. 
+
+  Management API
+    The Management API is a sidecar service layer that attempts to build a well supported set of operational actions on Cassandra® nodes that can be administered centrally. It currently works with official Apache Cassandra® 3.11.x an 4.0 via a drop in java agent. For more information refer to https://github.com/datastax/management-api-for-apache-cassandra.
+
   

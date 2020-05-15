@@ -41,6 +41,14 @@ This command will create the following:
 
 Post-requisites
 ---------------
+* Check if the operator has deployed successfully: 
+
+.. code-block:: shell
+
+   $> kubectl -n cass-operator get deployments
+   NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+   cass-operator   1/1     1            1           2m8s
+
 * Verify if the service account is created:
 
 .. code-block:: shell

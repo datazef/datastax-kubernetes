@@ -102,7 +102,8 @@
 <li class="toctree-l3"><a class="reference internal" href="delete-cass-operator.html">Delete cass-operator</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Connect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../manage/index.html">Manage</a></li>
 </ul>
 </li>
 </ul>
@@ -233,6 +234,14 @@ service/cassandradatacenter-webhook-service created
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Check if the operator has deployed successfully:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator get deployments
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+cass-operator   <span class="m">1</span>/1     <span class="m">1</span>            <span class="m">1</span>           2m8s
+</pre></div>
+</div>
 <ul class="simple">
 <li>Verify if the service account is created:</li>
 </ul>
