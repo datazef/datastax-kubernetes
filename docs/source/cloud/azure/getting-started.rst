@@ -1,2 +1,0 @@
-Login to Azure console
-======================
