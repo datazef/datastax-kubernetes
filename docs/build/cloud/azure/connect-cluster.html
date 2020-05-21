@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Login to Azure console &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Connect kubectl to a k8s cluster &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="AWS" href="../aws/index.html" />
-    <link rel="prev" title="Azure" href="index.html" /> 
+    <link rel="next" title="Delete a project" href="delete-project.html" />
+    <link rel="prev" title="Create a Kubernetes cluster" href="create-cluster.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,7 +84,17 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Cloud</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../gcp/index.html">GCP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Azure</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Login to Azure console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="install.html">Install SDK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="login.html">Login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-project.html">Create a project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="create-cluster.html">Create a Kubernetes cluster</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Connect kubectl to a k8s cluster</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="delete-project.html">Delete a project</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../aws/index.html">AWS</a></li>
@@ -151,13 +161,13 @@
         
           <li><a href="index.html">Azure</a> &raquo;</li>
         
-      <li>Login to Azure console</li>
+      <li>Connect kubectl to a k8s cluster</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/cloud/azure/getting-started.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/cloud/azure/connect-cluster.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -170,8 +180,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="login-to-azure-console">
-<h1>Login to Azure console<a class="headerlink" href="#login-to-azure-console" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="connect-kubectl-to-a-k8s-cluster">
+<h1>Connect kubectl to a k8s cluster<a class="headerlink" href="#connect-kubectl-to-a-k8s-cluster" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pre-requisites">
+<h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
+<p>Before you start, make sure you have performed the following tasks:</p>
+<ul class="simple">
+<li><a class="reference internal" href="create-cluster.html"><span class="doc">Create a Kubernetes cluster</span></a></li>
+</ul>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>From the Azure CLI, connect to a cluster using the command:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; az aks get-credentials --resource-group datastax-1 --name myAKSCluster
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Make sure you use the correct resource group and AKS name</p>
+</div>
+</div>
+<div class="section" id="post-requisites">
+<h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Check if connection is successful:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl get nodes
+<span class="hll">NAME                       STATUS   ROLES   AGE   VERSION
+</span><span class="hll">aks-nodepool1-99674446-0   Ready    agent   20h   v1.15.10
+</span><span class="hll">aks-nodepool1-99674446-1   Ready    agent   20h   v1.15.10
+</span><span class="hll">aks-nodepool1-99674446-2   Ready    agent   20h   v1.15.10
+</span><span class="hll">aks-nodepool1-99674446-3   Ready    agent   20h   v1.15.10
+</span></pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">From here you can use the cluster with the kubecl command utility ;-)</p>
+</div>
+</div>
 </div>
 
 
@@ -182,10 +230,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../aws/index.html" class="btn btn-neutral float-right" title="AWS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="delete-project.html" class="btn btn-neutral float-right" title="Delete a project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Azure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="create-cluster.html" class="btn btn-neutral float-left" title="Create a Kubernetes cluster" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -194,7 +242,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2020, Sebastien Bastard
+        &copy; Copyright 2020, DataStax
 
     </p>
   </div>
