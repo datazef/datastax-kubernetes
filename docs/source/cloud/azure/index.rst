@@ -2,6 +2,13 @@ Azure
 =====
 
 .. toctree::
-   :maxdepth: 1
+   :titlesonly:
 
-   getting-started
+   install
+   login
+   create-project
+   create-cluster
+   connect-cluster
+   delete-project
+   
+   
