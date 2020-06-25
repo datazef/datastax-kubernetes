@@ -1,0 +1,21 @@
+{
+  "CN": "sample-dc.sample-cluster",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "hosts": [
+    "b7d841bc-9f36-493d-a527-0766f00da924",
+    "74f07959-0023-4f8e-9364-e8c87f82f32c",
+    "4668427b-ed14-4a6a-abeb-d1f04f583a0d"    
+  ],
+  "names": [
+    {
+      "C": "US",
+      "ST": "California",
+      "L": "Santa Clara",
+      "O": "Engineering",
+      "OU": "Cassandra Operator"
+    }
+  ]
+}

@@ -42,7 +42,7 @@ Post-requisites
 .. code-block:: shell
    :emphasize-lines: 7, 8, 9
 
-   $> kubectl -n cass-operator exec -it -c cassandra cluster1-dc1-default-sts-0 -- nodetool status
+   $> kubectl -n cass-operator exec -it -c cassandra cluster1-dc1-rack1-sts-0 -- nodetool status
    Datacenter: dc1
    ===============
    Status=Up/Down

@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setup Traefik proxy &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="DSE" href="../dse/index.html" />
+    <link rel="prev" title="Install Helm" href="helm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> DSE On Kubernetes
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../cloud/index.html">Cloud</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Kubernetes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cheatsheet.html">Cheatsheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helm.html">Install Helm</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setup Traefik proxy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#procedure">Procedure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dse/index.html">DSE</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../monitoring/index.html">Monitoring</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DSE On Kubernetes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Kubernetes</a> &raquo;</li>
+        
+      <li>Setup Traefik proxy</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/kubernetes/proxy.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setup-traefik-proxy">
+<h1>Setup Traefik proxy<a class="headerlink" href="#setup-traefik-proxy" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is in addition to all notes available on DataStax at <a class="reference external" href="https://github.com/datastax/cass-operator/tree/proxy-config/docs/proxy">https://github.com/datastax/cass-operator/tree/proxy-config/docs/proxy</a></p>
+</div>
+<div class="section" id="pre-requisites">
+<h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
+<p>Before you start, make sure you have performed the following tasks:</p>
+<ul class="simple">
+<li>Helm: <a class="reference internal" href="helm.html"><span class="doc">Install Helm</span></a></li>
+</ul>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Install Traefik helm:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; helm repo add traefik https://containous.github.io/traefik-helm-chart
+<span class="s2">&quot;traefik&quot;</span> has been added to your repositories
+</pre></div>
+</div>
+<ul class="simple">
+<li>Update repository</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; helm repo update
+</pre></div>
+</div>
+<ul class="simple">
+<li>Install traefik:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; helm install traefik traefik/traefik
+</pre></div>
+</div>
+<ul class="simple">
+<li>Setup Traefik:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl apply -f k8s-build/templates/traefik/clusterrole.yaml
+$&gt; kubectl apply -f k8s-build/templates/traefik/customresourcedefinition.yaml
+</pre></div>
+</div>
+<ul class="simple">
+<li>To have access to the traefik dashboard, we need to edit the configuration file for the service:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl edit svc traefik
+</pre></div>
+</div>
+<ul class="simple">
+<li>Modify the ports section and add the following, leaving the nodePort configuraiton empty:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>- name: dashboard
+   port: <span class="m">9000</span>
+   protocol: TCP
+   targetPort: <span class="m">9000</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Delete the pod to force a restart:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl delete pod -n default -l app.kubernetes.io/instance<span class="o">=</span>traefik
+</pre></div>
+</div>
+</div>
+<div class="section" id="post-requisites">
+<h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Check if the service is listening to port 9000 for the dashboard access:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl describe svc traefik
+Name:                     traefik
+Namespace:                default
+Labels:                   app.kubernetes.io/instance<span class="o">=</span>traefik
+                          app.kubernetes.io/managed-by<span class="o">=</span>Helm
+                          app.kubernetes.io/name<span class="o">=</span>traefik
+                          helm.sh/chart<span class="o">=</span>traefik-8.7.0
+Annotations:              meta.helm.sh/release-name: traefik
+                          meta.helm.sh/release-namespace: default
+Selector:                 app.kubernetes.io/instance<span class="o">=</span>traefik,app.kubernetes.io/name<span class="o">=</span>traefik
+Type:                     LoadBalancer
+IP:                       <span class="m">10</span>.55.254.57
+LoadBalancer Ingress:     <span class="m">35</span>.233.233.245
+Port:                     web  <span class="m">80</span>/TCP
+TargetPort:               web/TCP
+NodePort:                 web  <span class="m">30558</span>/TCP
+Endpoints:                <span class="m">10</span>.52.2.2:8000
+Port:                     websecure  <span class="m">443</span>/TCP
+TargetPort:               websecure/TCP
+NodePort:                 websecure  <span class="m">31499</span>/TCP
+Endpoints:                <span class="m">10</span>.52.2.2:8443
+Port:                     dashboard  <span class="m">9000</span>/TCP
+TargetPort:               <span class="m">9000</span>/TCP
+NodePort:                 dashboard  <span class="m">32117</span>/TCP
+Endpoints:                <span class="m">10</span>.52.2.2:9000
+Port:                     cassandra-tls  <span class="m">9142</span>/TCP
+TargetPort:               <span class="m">9142</span>/TCP
+NodePort:                 cassandra-tls  <span class="m">30014</span>/TCP
+Endpoints:                <span class="m">10</span>.52.2.2:9142
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type    Reason                Age                From                Message
+  ----    ------                ----               ----                -------
+  Normal  EnsuringLoadBalancer  22m <span class="o">(</span>x3 over 42m<span class="o">)</span>  service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   21m <span class="o">(</span>x3 over 41m<span class="o">)</span>  service-controller  Ensured load balancer
+</pre></div>
+</div>
+<ul class="simple">
+<li>Acccess the traefik web portal (use command kubectl get svc to get the external IP) using the URL <a class="reference external" href="http:/">http:/</a>/&lt;EXTERNAL-IP&gt;:9000/dashbaord/</li>
+<li>Check the pod to ensure it has the proper args if you need to further troubleshoot:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl describe pod traefik-54d7ff7cb9-ws2n5
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../dse/index.html" class="btn btn-neutral float-right" title="DSE" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="helm.html" class="btn btn-neutral float-left" title="Install Helm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, DataStax
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

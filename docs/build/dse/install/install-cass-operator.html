@@ -96,7 +96,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="install-custom-storage.html">Install custom storage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configure-certs.html">Configure SSL certificates</a></li>
 <li class="toctree-l3"><a class="reference internal" href="create-datacenter.html">Create a Cassandra cluster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="delete-all.html">Delete all</a></li>
 <li class="toctree-l3"><a class="reference internal" href="delete-cass-operator.html">Delete cass-operator</a></li>
@@ -277,7 +276,7 @@ NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT<span clas
 <ul class="simple">
 <li>To list all clusters managed by this operator:</li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator get cassdcs -o wide
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator get cassdc -o wide
 No resources found.
 </pre></div>
 </div>

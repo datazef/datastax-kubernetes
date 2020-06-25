@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Delete all" href="delete-all.html" />
-    <link rel="prev" title="Configure SSL certificates" href="configure-certs.html" /> 
+    <link rel="prev" title="Install custom storage" href="install-custom-storage.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,7 +91,6 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Provisioning</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="install-cass-operator.html">Install cass-operator</a></li>
 <li class="toctree-l3"><a class="reference internal" href="install-custom-storage.html">Install custom storage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configure-certs.html">Configure SSL certificates</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Create a Cassandra cluster</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
@@ -223,7 +222,7 @@ cassandradatacenter.cassandra.datastax.com/dc1 created
 <ul class="simple">
 <li>Once all pods are up and running, you can check the status of the cassandra cluster:</li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator <span class="nb">exec</span> -it -c cassandra cluster1-dc1-default-sts-0 -- nodetool status
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl -n cass-operator <span class="nb">exec</span> -it -c cassandra cluster1-dc1-rack1-sts-0 -- nodetool status
 Datacenter: <span class="nv">dc1</span>
 <span class="o">===============</span>
 <span class="nv">Status</span><span class="o">=</span>Up/Down
@@ -278,7 +277,7 @@ Events:            &lt;none&gt;
         <a href="delete-all.html" class="btn btn-neutral float-right" title="Delete all" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="configure-certs.html" class="btn btn-neutral float-left" title="Configure SSL certificates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="install-custom-storage.html" class="btn btn-neutral float-left" title="Install custom storage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -88,7 +88,7 @@ Post-requisites
 
 .. code-block:: shell
 
-   $> kubectl -n cass-operator get cassdcs -o wide   
+   $> kubectl -n cass-operator get cassdc -o wide   
    No resources found.
 
 

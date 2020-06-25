@@ -1,1 +1,13 @@
 .DS_Store
+ca-key.pem
+ca.csr
+ca.pem
+cert-key.pem
+cert.csr
+cert.pem
+client-key.pem
+client.csr
+client.pem
+ingress-key.pem
+ingress.csr
+ingress.pem

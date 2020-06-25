@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configure SSL certificates &mdash; DSE On Kubernetes 0.0.1 documentation</title>
+  <title>Setup proxy DSE/Cassandra &mdash; DSE On Kubernetes 0.0.1 documentation</title>
   
 
   
@@ -35,8 +35,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Create a Cassandra cluster" href="create-datacenter.html" />
-    <link rel="prev" title="Install custom storage" href="install-custom-storage.html" /> 
+    <link rel="next" title="Configure SSL certificates" href="ssl.html" />
+    <link rel="prev" title="Retrive DSE credentials" href="credentials.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,21 +88,22 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">DSE</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index.html">Provisioning</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="install-cass-operator.html">Install cass-operator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="install-custom-storage.html">Install custom storage</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Configure SSL certificates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install/index.html">Provisioning</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Use</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lb.html">Load balancer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="credentials.html">Retrive DSE credentials</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Setup proxy DSE/Cassandra</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#post-requisites">Post-requisites</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="create-datacenter.html">Create a Cassandra cluster</a></li>
-<li class="toctree-l3"><a class="reference internal" href="delete-all.html">Delete all</a></li>
-<li class="toctree-l3"><a class="reference internal" href="delete-cass-operator.html">Delete cass-operator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ssl.html">Configure SSL certificates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cqlsh_from_container.html">cqlsh from container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cqlsh_through_lb.html">cqlsh through load balancer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cqlsh_using_nodeport.html">cqlsh using NodePort service</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../use/index.html">Use</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../manage/index.html">Manage</a></li>
 </ul>
 </li>
@@ -159,15 +160,15 @@
         
           <li><a href="../index.html">DSE</a> &raquo;</li>
         
-          <li><a href="index.html">Provisioning</a> &raquo;</li>
+          <li><a href="index.html">Use</a> &raquo;</li>
         
-      <li>Configure SSL certificates</li>
+      <li>Setup proxy DSE/Cassandra</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/dse/install/configure-certs.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/dse/use/proxy.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -180,14 +181,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configure-ssl-certificates">
-<h1>Configure SSL certificates<a class="headerlink" href="#configure-ssl-certificates" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="setup-proxy-dse-cassandra">
+<h1>Setup proxy DSE/Cassandra<a class="headerlink" href="#setup-proxy-dse-cassandra" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is in addition to all notes available on DataStax <a class="reference external" href="https://docs.datastax.com/en/cass-operator/doc/cass-operator/cassOperatorTOC.html">https://docs.datastax.com/en/cass-operator/doc/cass-operator/cassOperatorTOC.html</a> and to the information available <a class="reference external" href="https://github.com/datastax/cass-operator">https://github.com/datastax/cass-operator</a></p>
+</div>
 <div class="section" id="pre-requisites">
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline">¶</a></h2>
 <p>Before you start, make sure you have performed the following tasks:</p>
+<ul class="simple">
+<li>GKE: <a class="reference internal" href="../../cloud/gcp/create-cluster.html"><span class="doc">Create a Kubernetes cluster</span></a> and <a class="reference internal" href="../../cloud/gcp/connect-cluster.html"><span class="doc">Connect kubectl to a k8s cluster</span></a></li>
+<li><a class="reference internal" href="credentials.html"><span class="doc">Retrive DSE credentials</span></a></li>
+<li><a class="reference internal" href="../../kubernetes/proxy.html"><span class="doc">Setup Traefik proxy</span></a></li>
+</ul>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Configure the proxy to follow traffic on port 9142. First we edit the service file and ensure it is configured to manage port 9142:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl edit svc traefik
+ - name: cassandra-tls
+    port: <span class="m">9142</span>
+    protocol: TCP
+    targetPort: <span class="m">9142</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Second, we edit the deployment to add the 9142 entry point as shown below:</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; kubectl edit deployment traefik
+ - --entryPoints.cassandra-tls.address<span class="o">=</span>:9142/tcp
+</pre></div>
+</div>
 </div>
 <div class="section" id="post-requisites">
 <h2>Post-requisites<a class="headerlink" href="#post-requisites" title="Permalink to this headline">¶</a></h2>
@@ -202,10 +229,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="create-datacenter.html" class="btn btn-neutral float-right" title="Create a Cassandra cluster" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="ssl.html" class="btn btn-neutral float-right" title="Configure SSL certificates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="install-custom-storage.html" class="btn btn-neutral float-left" title="Install custom storage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="credentials.html" class="btn btn-neutral float-left" title="Retrive DSE credentials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

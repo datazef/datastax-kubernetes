@@ -1,4 +1,6 @@
-kubectl get pod -w---
+# kubectl get pod -w
+
+---
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
@@ -7,6 +9,7 @@ metadata:
 spec:
   targetNamespaces:
   - cass-operator
+  
 ---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
