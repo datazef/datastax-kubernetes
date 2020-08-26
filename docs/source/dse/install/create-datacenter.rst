@@ -24,6 +24,9 @@ Procedure
 .. warning::
    Some features are still being developed for the cassandra version. Please install DSE to see all features in action.
 
+.. note::
+   If you want to install the same setup with portworx to operate the data layer you can. use the k8s-build/templates/cassandra/example-dse-full-portworx.yaml configuration file. 
+
 Post-requisites
 ---------------
 * Check if all pods are created (topology: dc1[3 nodes]):

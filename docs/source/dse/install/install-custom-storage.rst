@@ -41,6 +41,9 @@ Procedure
    $> kubectl create -f k8s-build/templates/cassandra/storage.yaml
    storageclass.storage.k8s.io/server-storage created
 
+.. note::
+   If you want to install the same setup with portworx to operate the data layer you can. use the k8s-build/templates/cassandra/portworx.yaml configuration file. 
+
 
 Post-requisites
 ---------------

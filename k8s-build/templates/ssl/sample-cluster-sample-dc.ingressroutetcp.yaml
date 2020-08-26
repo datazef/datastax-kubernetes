@@ -1,25 +1,26 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 metadata:
-  name: cluster1-dc1
+  name: cluster-dse-ingress
+  namespace: cass-operator
 spec:
   entryPoints:
-    - cassandra-tls
+    - cassandra
   routes:
     # Match is the rule corresponding to an underlying router.
-    - match: HostSNI('b7d841bc-9f36-493d-a527-0766f00da924')
+    - match: HostSNI('c2652ae8-bbce-46ec-99c0-59971d11b21d')
       services:
         - name: cluster1-dc1-rack1-sts-0
           port: 9042
           terminationDelay: 400
           weight: 10
-    - match: HostSNI('74f07959-0023-4f8e-9364-e8c87f82f32c')
+    - match: HostSNI('f38caf96-2d65-4025-bd54-588523a112e6')
       services:
         - name: cluster1-dc1-rack2-sts-0
           port: 9042
           terminationDelay: 400
           weight: 10
-    - match: HostSNI('4668427b-ed14-4a6a-abeb-d1f04f583a0d')
+    - match: HostSNI('ef932013-426a-47b9-9c11-c06e6fa2e4cc')
       services:
         - name: cluster1-dc1-rack3-sts-0
           port: 9042
@@ -27,13 +28,13 @@ spec:
           weight: 10                    
   tls:
     domains:
-    - main: dc1.cluster1
+    - main: cluster-dse
       sans:
-      - b7d841bc-9f36-493d-a527-0766f00da924
-      - 74f07959-0023-4f8e-9364-e8c87f82f32c
-      - 4668427b-ed14-4a6a-abeb-d1f04f583a0d
+      - c2652ae8-bbce-46ec-99c0-59971d11b21d
+      - f38caf96-2d65-4025-bd54-588523a112e6
+      - ef932013-426a-47b9-9c11-c06e6fa2e4cc
     options:
-      name: cluster1-dc1
-      namespace: default
-    secretName: sample-cluster-sample-dc-cert
+      name: cluster-dse-options
+      namespace: cass-operator
+    secretName: cluster-dse-cert
     passthrough: false

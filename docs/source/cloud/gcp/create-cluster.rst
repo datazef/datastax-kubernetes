@@ -26,6 +26,7 @@ Procedure
    * For zone names and other, refer to: https://cloud.google.com/compute/docs/regions-zones#available.
    * If you want to use dse it is preferable to use a bigger instance type like n1-standard-1. Cassandra can be installed with smaller instances types. 
    * nodes will be created in the zone defined as default in the project settings. If desired otherwise, pass required arguments.
+   * To launch using ther portworx storage layer, you can need to add the parameters --scopes compute-rw,storage-ro --labels=portworx=gke --disk-type=pd-ssd  --image-type ubuntu
 
 .. warning::
    * num nodes define the number of nodes per zone and not the total number of nodes 

@@ -2,7 +2,7 @@
 apiVersion: integreatly.org/v1alpha1
 kind: Grafana
 metadata:
-  name: default
+  name: grafana-cass
   namespace: cass-operator
 spec:
   ingress:

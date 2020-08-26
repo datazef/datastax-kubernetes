@@ -1,5 +1,5 @@
-Load balancer
-=============
+Cloud Load balancer
+===================
 
 .. note::
    This is in addition to all notes available on DataStax https://github.com/datastax/management-api-for-apache-cassandra

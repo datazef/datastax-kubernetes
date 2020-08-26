@@ -1,13 +1,13 @@
 {
-  "CN": "sample-dc.sample-cluster",
+  "CN": "cluster-dse",
   "key": {
     "algo": "rsa",
     "size": 2048
   },
   "hosts": [
-    "b7d841bc-9f36-493d-a527-0766f00da924",
-    "74f07959-0023-4f8e-9364-e8c87f82f32c",
-    "4668427b-ed14-4a6a-abeb-d1f04f583a0d"    
+    "c2652ae8-bbce-46ec-99c0-59971d11b21d",
+    "f38caf96-2d65-4025-bd54-588523a112e6",
+    "ef932013-426a-47b9-9c11-c06e6fa2e4cc"    
   ],
   "names": [
     {

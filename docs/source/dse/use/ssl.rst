@@ -47,14 +47,14 @@ The previous command will generate 3 files: ca-key.pem, ca.csr, ca.pem
 
 .. code-block:: shell
 
-   $> kubectl create secret tls ca-cert --cert ca.pem --key ca-key.pem
+   $> kubectl create secret generic ca-cert --from-file=tls.cert=ca.pem --from-file=tls.ca=ca.pem
    secret/ca-cert created
 
 * Generate the ingress certificate:
 
 .. code-block:: shell
 
-   $> cfssl gencert -ca ca.pem -ca-key ca-key.pem k8s-build/templates/ssl/ingress.csr.json | cfssljson -bare 
+   $> cfssl gencert -ca ca.pem -ca-key ca-key.pem k8s-build/templates/ssl/ingress.csr.json | cfssljson -bare ingress
    2020/06/24 15:27:56 [INFO] generate received request
    2020/06/24 15:27:56 [INFO] received CSR
    2020/06/24 15:27:56 [INFO] generating key: rsa-2048
@@ -67,8 +67,14 @@ The previous command will generate 3 files: ingress-key.pem, ingress.csr, ingres
 
 .. code-block:: shell
 
-   $> kubectl create secret tls sample-cluster-sample-dc-cert --cert ingress.pem --key ingress-key.pem
-   secret/sample-cluster-sample-dc-cert created
+   $> kubectl create secret generic cluster-dse-cert --from-file=tls.crt=ingress.pem --from-file=tls.key=ingress-key.pem --from-file=tls.ca=ca.pem
+   secret/cluster-dse-cert created
+
+* Create a truststore for the application
+
+.. code-block:: shell
+
+   $> keytool -import -v -trustcacerts -alias CARoot -file ca.pem -keystore client.truststore
 
 * Create and sign Client certificate
 
@@ -81,6 +87,13 @@ The previous command will generate 3 files: ingress-key.pem, ingress.csr, ingres
    2020/06/24 15:31:47 [INFO] encoded CSR
    2020/06/24 15:31:47 [INFO] signed certificate with serial number 282179691075855076969928348357272306708748688455
    2020/06/24 15:31:47 [WARNING] This certificate lacks a "hosts" field. This makes it unsuitable for websites. 
+
+* Create the keystore for the client
+
+.. code-block:: shell
+
+   $> openssl pkcs12 -export -in client.pem -inkey client-key.pem -out client.p12
+   $> keytool -importkeystore -destkeystore client.keystore -srckeystore client.p12 -srcstoretype PKCS12
 
 * Install TLS Options to add support for mutual TLS:
 
