@@ -8,7 +8,7 @@ Pre-requisites
 --------------
 Before you start, make sure you have performed the following tasks:
 
-* :doc:`../use/lb`
+* :doc:`../network/lb`
 
 Procedure
 ---------

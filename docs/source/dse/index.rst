@@ -4,7 +4,17 @@ DSE
 .. toctree::
    :maxdepth: 2
 
-   install/index
+   setup/index
+
+.. toctree::
+   :maxdepth: 2
+
+   provision/index
+
+.. toctree::
+   :maxdepth: 2
+
+   network/index
 
 .. toctree::
    :maxdepth: 2

@@ -6,4 +6,5 @@ Kubernetes
 
    cheatsheet
    helm
-   proxy
+   traefik
+   portworx

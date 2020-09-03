@@ -9,8 +9,8 @@ Pre-requisites
 Before you start, make sure you have performed the following tasks:
 
 * GKE: :doc:`../../cloud/gcp/create-cluster` and :doc:`../../cloud/gcp/connect-cluster`
-* :doc:`credentials`
-* :doc:`lb`
+* :doc:`../manage/credentials`
+* :doc:`../network/lb`
 
 Procedure
 ---------

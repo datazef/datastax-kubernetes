@@ -15,11 +15,6 @@ DataStax On Kubernetes
 .. toctree::
    :maxdepth: 3
 
-   portworx/index
-
-.. toctree::
-   :maxdepth: 3
-
    dse/index
 
 .. toctree::

@@ -7,6 +7,8 @@ metadata:
 spec:
   ingress:
     enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "LoadBalancer"
   config:
     auth:
       disable_signout_menu: true

@@ -8,7 +8,7 @@ Pre-requisites
 --------------
 Before you start, make sure you have performed the following tasks:
 
-* :doc:`../../dse/install/create-datacenter`
+* :doc:`../../dse/provision/create-datacenter`
 * :doc:`../operatorhub/operator`
 
 Procedure
@@ -40,3 +40,6 @@ Post-requisites
    grafana-operator-57f8c4f67-s8s54       1/1     Running   0          21s
    prometheus-operator-7df548ccd6-dv7mg   1/1     Running   0          14m
    prometheus-prometheus-k8s-0            3/3     Running   1          7m35s
+
+.. note::
+   The grafana operator does take some time to start so just be patient (few minutes).

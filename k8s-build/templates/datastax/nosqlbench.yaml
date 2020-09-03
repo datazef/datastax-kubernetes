@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nosqlbench
+  namespace: cass-operator
+spec:
+  ttlSecondsAfterFinished: 0
+  completions: 1
+  parallelism: 1
+  template:
+    spec:
+      containers:
+      - name: nosqlbench
+        image: nosqlbench/nosqlbench
+        command: ["java","-jar", "nb.jar", "activities/baselines/cql-keyvalue", "default", "hosts=10.48.3.3,10.48.4.2", "username=cluster1-superuser", "password=Qi4PgzWZg1fXhpzT_HNQ11H2dkMok7-KpVY9JoiN__fDLwBKqKuu4w", "pooling=8:8:32000", "threads=auto", "--report-csv-to=metrics", "cyclerate=20000", "async=20000"]
+      restartPolicy: Never
+  backoffLimit: 0

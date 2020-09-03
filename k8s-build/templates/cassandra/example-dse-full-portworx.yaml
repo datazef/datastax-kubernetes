@@ -30,6 +30,20 @@ spec:
     - name: rack3
       zone: us-west1-c
 
+  podTemplateSpec:
+    spec:
+      schedulerName: stork
+      containers:
+        - args: ["/bin/sh", "-c", "tail -n+1 -F /var/log/cassandra/system.log"]
+          image: busybox
+          imagePullPolicy: "Always"
+          name: "another-tailing-logger"
+          terminationMessagePath: "/dev/termination-log"
+          terminationMessagePolicy: "File"
+          volumeMounts:
+            - mountPath: "/var/log/cassandra"
+              name: "server-logs"
+
   # Limit each pod to a fixed 6 CPU cores and 24 GB of RAM.
   resources:
     requests:
@@ -145,12 +159,6 @@ spec:
       authenticator: com.datastax.bdp.cassandra.auth.DseAuthenticator
       authorizer: com.datastax.bdp.cassandra.auth.DseAuthorizer
       role_manager: com.datastax.bdp.cassandra.auth.DseRoleManager
-      server_encryption_options:
-        internode_encryption: all
-        keystore: /etc/encryption/node-keystore.jks
-        keystore_password: dc1
-        truststore: /etc/encryption/node-keystore.jks
-        truststore_password: dc1
 
     jvm-server-options:
 
@@ -163,16 +171,3 @@ spec:
         # As the database comes up for the first time, set system keyspaces to RF=3
         - "-Ddse.system_distributed_replication_dc_names=dc1"
         - "-Ddse.system_distributed_replication_per_dc=3"
-
-        # Enable search
-        - "-Dsearch-service=true"
-        - "-Dcatalina.home=/opt/dse/tomcat"
-        - "-Dcatalina.base=/opt/dse/tomcat"
-        - "-Djava.util.logging.config.file=/opt/dse/tomcat/conf/logging.properties"
-        - "-Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager"
-        - "-Dtomcat.logs=/var/log/tomcat"
-        - "-Dsolr.solr.home=solr/"
-        - "-Ddisable.configEdit=true"
-
-        # Enable graph
-        - "-Dgraph-enabled=true"

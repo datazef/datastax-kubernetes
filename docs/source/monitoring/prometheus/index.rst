@@ -7,3 +7,4 @@ Prometheus
    operator
    service
    instance
+   metric

@@ -8,7 +8,7 @@ Pre-requisites
 --------------
 Before you start, make sure you have performed the following tasks:
 
-* :doc:`../../dse/install/create-datacenter`
+* :doc:`../../dse/provision/create-datacenter`
 * :doc:`../operatorhub/operator`
 
 Procedure
