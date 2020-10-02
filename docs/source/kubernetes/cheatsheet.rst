@@ -16,6 +16,14 @@ API resources
    limitranges                       limits                                          true         LimitRange
    namespaces                        ns                                              false        Namespace
 
+List events
+-----------
+To list envets in chronological order:
+
+.. code-block:: shell
+
+   $> kubectl get events --sort-by='{.lastTimestamp}'
+
 List resources
 --------------
 

@@ -17,7 +17,7 @@ Procedure
 .. code-block:: shell
    :emphasize-lines: 2, 3, 11
 
-   $> kubectl create -f https://raw.githubusercontent.com/datastax/cass-operator/v1.4.0/docs/user/cass-operator-manifests-v1.15.yaml
+   $> kubectl create -f https://raw.githubusercontent.com/datastax/cass-operator/v1.4.1/docs/user/cass-operator-manifests-v1.15.yaml
 
    namespace/cass-operator created
    serviceaccount/cass-operator created
@@ -42,7 +42,6 @@ This command will create the following:
 
 .. warning::
    This is for GKE Regular Channel - k8s 1.15 -> Adjust based on your cloud
-
 
 Post-requisites
 ---------------

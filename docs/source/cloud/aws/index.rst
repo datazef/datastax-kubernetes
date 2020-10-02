@@ -4,4 +4,8 @@ AWS
 .. toctree::
    :maxdepth: 1
 
-   getting-started
+   install
+   login
+   create-cluster
+   rbac
+   

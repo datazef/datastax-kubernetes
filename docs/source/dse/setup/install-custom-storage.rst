@@ -12,7 +12,7 @@ Before you start, make sure you have performed the following tasks:
 
 Procedure
 ---------
-* Storage class:
+* Storage class. 
 
 .. code-block:: shell
 
@@ -33,12 +33,20 @@ Procedure
 .. warning::
    * volumeBindingMode: WaitForFirstConsumer => the default value is Immediate and should not be used. It can prevent Cassandra pods from being scheduled on a worker node. If a pod fails to run and its status reports a message like, had volume node affinity conflict, then check the volumeBindingMode of the StorageClass being used. See Topology-Aware Volume Provisioning in Kubernetes for more details.
 
-* Create the optimized storage class:
+* Create the optimized storage class (GCP):
 
 .. code-block:: shell
    :emphasize-lines: 2
 
-   $> kubectl create -f k8s-build/templates/cassandra/storage.yaml
+   $> kubectl create -f k8s-build/templates/cassandra/storage-gcp.yaml
+   storageclass.storage.k8s.io/server-storage created
+
+* Create the optimized storage class (AWS):
+
+.. code-block:: shell
+   :emphasize-lines: 2
+
+   $> kubectl create -f k8s-build/templates/cassandra/storage-aws.yaml
    storageclass.storage.k8s.io/server-storage created
 
 .. note::

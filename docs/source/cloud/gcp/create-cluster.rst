@@ -16,11 +16,11 @@ Procedure
 .. code-block:: shell
    :emphasize-lines: 2, 5
 
-   $> gcloud container clusters create cluster-dse  --machine-type "n1-standard-1" --num-nodes "2"
+   $> gcloud container clusters create cluster-dse  --machine-type "n1-standard-8" --num-nodes "6"
    Creating cluster cluster-dse in us-west1... Cluster is being health-checked (master is healthy)...done.                                            Created [https://container.googleapis.com/v1/projects/fieldops-delivery/zones/us-west1/clusters/cluster-dse].
  
    NAME         LOCATION  MASTER_VERSION  MASTER_IP     MACHINE_TYPE   NODE_VERSION    NUM_NODES  STATUS
-   cluster-dse  us-west1  1.14.10-gke.27  34.82.61.164  n1-standard-1  1.14.10-gke.27  15         RUNNING
+   cluster-dse  us-west1  1.14.10-gke.27  34.82.61.164  n1-standard-8  1.14.10-gke.27  15         RUNNING
 
 .. note::
    * For zone names and other, refer to: https://cloud.google.com/compute/docs/regions-zones#available.
