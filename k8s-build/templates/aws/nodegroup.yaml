@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: k8s
+  region: us-west-2
+
+nodeGroups:
+  - name: ng-west-2d
+    instanceType: m5.4xlarge
+    availabilityZones: ["us-west-2d"]
+    desiredCapacity: 2
+    volumeSize: 50
+    privateNetworking: true
+    ssh:
+      allow: true
+      publicKeyPath: ~/.ssh/id_rsa.pub
